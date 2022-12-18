@@ -2,7 +2,7 @@
 - Autonomous mobile robot simulation platform
 - Smart Warehouse
 
-# local run env
+# Local run env
 ```sh
                      0              1              2            3
 loggingLevel = [logging.ERROR, logging.WARN, logging.INFO, logging.DEBUG]
