@@ -56,6 +56,8 @@ https://www.flexsim.com/material-handling-simulation/
 very good video https://www.flexsim.com/videos/warehouse-optimization-and-digital-twin/ @17:20
 Question: what rules are ready in FlexSim.
 https://docs.flexsim.com/en/23.0/Reference/ProcessFlowObjects/SharedProperties/SharedProperties.html#change
+![image](https://user-images.githubusercontent.com/75236407/208612073-858fa4c6-81e9-44cc-a701-784dc6cde0aa.png)
+
 } >
 
 ## FlexSim AGV Simulation Software - Talumis { based on FlexSim
