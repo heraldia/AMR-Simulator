@@ -109,7 +109,7 @@ https://www.youtube.com/watch?v=IMPbKVb8y8s
 ## cepdnaclk/e16-3yp-smart-pharmaceutical-warehousing: In this project, we are trying to address this issue by developing a fully automated warehouse management that will minimize the drawbacks while improving efficiency and profitability. We are implementing a warehouse management system which consists two types of robots; robots arms to handle loading/unloading of goods, automated guided vehicles to transport goods inside the warehouse. Also, an online shopping portal to make the purchases from the warehouse. { 
 https://github.com/cepdnaclk/e16-3yp-smart-pharmaceutical-warehousing
 The warehouse has two base stations, the delivery post and receiving post, to deliver goods to the customers and receive any stocks to the warehouse respectively.
- minimizing the travel time.
+minimizing the travel time.
 } >
 
 
@@ -192,7 +192,7 @@ estimated processing times
 } >
 
 chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://keep.lib.asu.edu/_flysystem/fedora/c7/116746/Huang_asu_0010N_14128.pdf
-## (4条消息) 基于AGV的物流作业车间调度优化_码丽莲梦露的博客-CSDN博客 { 
+## 基于AGV的物流作业车间调度优化_码丽莲梦露的博客-CSDN博客 { 
 https://blog.csdn.net/crazy_girl_me/article/details/124243262
 https://www.proquest.com/openview/9191c507f8e48c05fc9b5b58684b196d/1?pq-origsite=gscholar&cbl=51908
 Shop Scheduling with Material Handling (JSSMH) 
@@ -200,7 +200,7 @@ Shop Scheduling with Material Handling (JSSMH)
 } >
 
 
-## (3) (PDF) Design and Development of an automated Robotic Pick & Stow System for an e-Commerce Warehouse { 
+## Design and Development of an automated Robotic Pick & Stow System for an e-Commerce Warehouse { 
 https://www.researchgate.net/publication/314283198_Design_and_Development_of_an_automated_Robotic_Pick_Stow_System_for_an_e-Commerce_Warehouse
 
 } >
@@ -210,4 +210,80 @@ https://link.springer.com/article/10.1007/s10846-021-01561-5?utm_source=xmol&utm
 
 } >
 
+# 2022_1225_1757
+# path finding algorithm
+
+# path-planning · GitHub Topics { 
+https://github.com/topics/path-planning?l=python&o=desc&s=updated
+more to explore
+} >
+
+## zhm-real/PathPlanning: Common used path planning algorithms with animations. { many algorithms | best
+https://github.com/zhm-real/PathPlanning
+[we need the shortest path.]
+- four Chinese contributors
+    https://www.linkedin.com/in/huiming-zhou-03500b145/
+    https://www.linkedin.com/in/yue-qi/
+5th reading 
+} >
+
+## zhm-real/MotionPlanning: Motion planning algorithms commonly used on autonomous vehicles. (path planning + path tracking) { interesting
+https://github.com/zhm-real/MotionPlanning
+visualization of various vehicles
+} >
+
+
+## AtsushiSakai/PythonRobotics: Python sample codes for robotics algorithms. { very complete set of algorithms and tools | 94 contributors | best
+https://github.com/AtsushiSakai/PythonRobotics
+3rd reading 
+many algorithms, pathplanning is one of many categories.
+This is a 2D navigation sample code with Dynamic Window Approach.
+good for us: avoiding an obstacle
+    Dynamic Window Approach
+    D* algorithm
+} >
+## RuslanAgishev/motion_planning: Robot path planning, mapping and exploration algorithms { 
+https://github.com/RuslanAgishev/motion_planning
+2nd reading
+The algorithm is provided not only for an ego-vechicle but also for a group of robots.
+as well as for drone in 3D environment
+RTT algorithm
+} >
+
+
+## prchinmay/robot_waiter: A path planning and control method is developed for the scenario of a non-holonomic robot serving food in a restaurant. { a paper, 
+https://github.com/prchinmay/robot_waiter
+[we need the shortest path.]: The path planning algorithm used is PRM*, where a semi-random point sampling algorithm is used. Graph search is performed by the Dijkstra algorithm, after which b-splines is used to smoothen the path.
+4th reading
+good: design map in png.
+} >
+
+## jannikmi/extremitypathfinder: python package for fast shortest path computation on 2D polygon or grid maps {  very good
+https://github.com/jannikmi/extremitypathfinder
+1st reading
+a good team management.
+https://extremitypathfinder.readthedocs.io/en/latest/1_usage.html
+find_shortest_path
+} >
+
+## 【规划】机器人规划算法总结_笑扬轩逸的博客-CSDN博客_机器人规划包括那三个层次 { 
+https://blog.csdn.net/yuxuan20062007/article/details/86787995?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-2-86787995-blog-110368020.pc_relevant_3mothn_strategy_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-2-86787995-blog-110368020.pc_relevant_3mothn_strategy_recovery&utm_relevant_index=3
+psudo code
+} >
+
+## iory/scikit-robot: A Flexible Framework for Robot Control in Python { irrelevant
+https://github.com/iory/scikit-robot
+robot body, motion planning
+
+} >
+
+# pathfinding-algorithms · GitHub Topics { 
+https://github.com/topics/pathfinding-algorithms?l=python
+
+} >
+
+## gavincangan/multiagent-pathfinding: Conflict-based search for multi-agent path finding { 
+https://github.com/gavincangan/multiagent-pathfinding
+good 
+} >
 

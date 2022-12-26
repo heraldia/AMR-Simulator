@@ -1,6 +1,5 @@
 # AMR-Simulator
-- Autonomous mobile robot simulation platform
-- Smart Warehouse
+This Autonomous mobile robot simulation platform(simulator) builds a smart Warehouse in a 2D map.
 
 # Local run env
 ```sh
