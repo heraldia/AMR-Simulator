@@ -286,4 +286,5 @@ https://github.com/topics/pathfinding-algorithms?l=python
 https://github.com/gavincangan/multiagent-pathfinding
 good 
 } >
+多个扫地机器人，这个点子很有research 启发。
 
