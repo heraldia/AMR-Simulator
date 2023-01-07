@@ -256,6 +256,8 @@ https://github.com/prchinmay/robot_waiter
 [we need the shortest path.]: The path planning algorithm used is PRM*, where a semi-random point sampling algorithm is used. Graph search is performed by the Dijkstra algorithm, after which b-splines is used to smoothen the path.
 4th reading
 good: design map in png.
+### b-splines [Rhino4 教程 1-2 （介绍B-spline特性）-教育视频-搜狐视频](https://tv.sohu.com/v/cGwvNjQwMTcyOS8yNDgwNzkwMS5zaHRtbA==.html) {  2023_0107_0007 
+B-spline 2 control points,           3 control points of Bezier } >
 } >
 
 ## jannikmi/extremitypathfinder: python package for fast shortest path computation on 2D polygon or grid maps {  very good
