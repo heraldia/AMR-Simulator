@@ -9,9 +9,9 @@ class State(Enum):
     - pausing, cross section.
     - idle / accomplished
     """
-    Idle = 0
-    OnDuty = 1
-    Pausing = 2
+    Idle = 0  #闲置
+    OnDuty = 1   #任务中
+    Pausing = 2   #暂停
     
 
 class Agent:
@@ -44,6 +44,7 @@ class Agent:
         self.rising_arm_speed = 0.1 # m/s
         self.dropping_arm_speed = 0.1 # m/s
         self.turning_time = 1 # s
+        #完成一个任务需要：移动，举起机械臂，放下机械臂，转弯，取货，放货
 
         self.fetching_time = 1 # s
         self.dispatching_time = 1 # s
@@ -58,11 +59,11 @@ class Agent:
     def set_location(self, location):
         self.location = location
 
-    def increment_odometer(self):
-        self.odometer += 1
+    def increment_odometer(self):    #定义距离的增加（自增1）
+        self.odometer += 1   #原始值增加1
 
-    def update_odometer(self, travelled_distance):
-        self.odometer += travelled_distance
+    def update_odometer(self, travelled_distance):#自定义距离的增加，传进来多少增加多少
+        self.odometer += travelled_distance   #odometer=odometer+travelled_distance
 
     def idle_time_accumulated(self):
         self.idle_time_so_far += 1
@@ -77,6 +78,7 @@ class Agent:
             self.state = State.OnDuty
         elif "Pausing" in state_str:
             self.state = State.Pausing
+
 
 
 

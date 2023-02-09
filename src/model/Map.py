@@ -18,7 +18,7 @@ class Map:
         sub = []
         for line in open(scene):   #use file iterators
             for c in line.rstrip():
-                sub += c,
+                sub += c,  #+=加法赋值运算符：sub=sub+c
             self.map.append(sub)
             sub = []
 
@@ -28,9 +28,9 @@ class Map:
     def get_map(self):
         return self.map
 
-    def random_fill_map(self):
-        for i in range(len(self.map)):
-            for j in range(len(self.map[0])):
+    def random_fill_map(self):   #随机生成地图
+        for i in range(len(self.map)):   #行的取值范围是默认编辑器的行数
+            for j in range(len(self.map[0])):   #定义列的取值范围
                 shelf = Shelf((i,j))
                 if self.map[i][j] == '1':
                     self.map[i][j] = shelf

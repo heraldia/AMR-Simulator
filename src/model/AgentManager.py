@@ -6,8 +6,8 @@ class AgentManager(metaclass=Singleton):
     def __init__(self):
         self.agentList = []
         self.agent_state_dict = {
-                'Idle'     : [],
-                'OnDuty'   : [],
+                'Idle'     : [],   #闲置
+                'OnDuty'   : [],   #任务中
                 'Pausing'  : [],
                 'carrying' : [],
                 }
@@ -16,7 +16,7 @@ class AgentManager(metaclass=Singleton):
         self.agentList.append(agent)
         self.agent_state_dict[agent.state.name].append(agent)
 
-    def update(self, agent, pre_state, cur_state):
+    def update(self, agent, pre_state, cur_state):   #更新agent的状态：删除前一个状态更新当前状态
         #print(18, sys._getframe().f_lineno, f'| 1 = {1}', self.agent_state_dict) # 2022_1217_2349
         self.agent_state_dict[pre_state].remove(agent)
         self.agent_state_dict[cur_state].append(agent)
