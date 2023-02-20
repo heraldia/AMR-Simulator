@@ -16,3 +16,12 @@ https://www.sciencedirect.com/science/article/abs/pii/S0305054896000615
 - 启发式算法heuristic algorithm(没有在数学上证明是最优解的贪心算法，通常用来寻找可行解，以物拟人)
 - 以仿自然体算法为主，主要有蚁群算法、模拟退火法、神经网络等。 
 - 退火算法 (Simulated Annealing，SA) 
+
+
+#Structure of the whole framework
+objective function: 
+1. The shortest distance: agent odometer, distance is determined by different algorithm, each algo res. [Improve ant algorithm can be considered to my novelty. ] 
+2. The shortest working time: task fullfill time, it is determined by distance and moving speed. In the first experiment, I consider moving speed as a constant, but it is changed according to different items. 
+3. Highest value: battery consumption, item price, item weight, item size
+    Item weight, item size: They determine speed, and then speed determines battery consumption
+[Consider value as a objective function can be my novelty]
