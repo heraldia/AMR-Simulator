@@ -4,6 +4,7 @@ from utils.logging_stream_handler import logger
 from .Strategy import Strategy
 from .AgentManager import AgentManager
 from .ItemManager import ItemManager
+from .Item import Item_State
 
 agentManager = AgentManager()
 itemManager = ItemManager()
@@ -13,9 +14,12 @@ class Task:
     self.assignment -> algorithm, methodology
     one task is one trip
     """
-    def __init__(self, agent, item):
+    def __init__(self, agent, item, map):
         self.agent = agent
         self.item = item
+        # ## 设置地图
+        self.map = map
+        self.distance = 0
         self.item.update_state("Reserved")
         #itemManager.remove_item(item)
         #agentManager.update(self.agent, "Idle", "OnDuty")
@@ -28,8 +32,16 @@ class Task:
         # todo
         # self.distance = A_star_algorithm()
 
-        # simple algorithm, 
-        strategy = Strategy(self.agent, self.item, 'simple_hamming_distance')
+        # simple algorithm,
+        # strategy = Strategy(self.agent, self.item, self.map, 'simple_hamming_distance')
+
+        # # ## 运行蚁群算法
+        # strategy = Strategy(self.agent, self.item, self.map, 'ACO')
+
+
+        # ## 运行精英蚁群算法
+        strategy = Strategy(self.agent, self.item, self.map, 'ACO_IMPROVED')
+
         self.distance = strategy.get_final_path_distance()
 
         item_height = self.item.location[2] * Constants.SHELF_HEIGHT / Constants.SHELF_LAYER 
@@ -48,3 +60,12 @@ class Task:
 
 
 
+    def get_task_info(self):
+        res = []
+        for item in itemManager.itemList:
+            if item.state == Item_State.Processed:
+                for agent in agentManager.agentList:
+                    if item.id in agent.taskList:
+                        res.append(
+                            {"机器人ID": agent.id, "物品ID": item.id, "完成时间": agent.cur_task_accomplish_time})
+        return res
