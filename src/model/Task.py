@@ -6,21 +6,20 @@ from .AgentManager import AgentManager
 from .ItemManager import ItemManager
 from .Item import Item_State
 
-agentManager = AgentManager()
-itemManager = ItemManager()
-
 class Task:
     """
     self.assignment -> algorithm, methodology
     one task is one trip
     """
-    def __init__(self, agent, item, map):
+    def __init__(self, agent, item, map, agentManager, itemManager):
         self.agent = agent
         self.item = item
         # ## 设置地图
         self.map = map
         self.distance = 0
         self.item.update_state("Reserved")
+        self.agentManager = agentManager
+        self.itemManager = itemManager
         #itemManager.remove_item(item)
         #agentManager.update(self.agent, "Idle", "OnDuty")
 
@@ -40,7 +39,7 @@ class Task:
 
 
         # ## 运行精英蚁群算法
-        strategy = Strategy(self.agent, self.item, self.map, 'ACO_IMPROVED')
+        strategy = Strategy(self.agent, self.item, self.map, 'simple_hamming_distance')
 
         self.distance = strategy.get_final_path_distance()
 
@@ -55,16 +54,16 @@ class Task:
 
     def processed_item(self):
         self.item.update_state("Processed")
-        self.agent.update_state("Idle")
-        agentManager.update(self.agent, "OnDuty", "Idle")
+        # self.agent.update_state("Idle")
+        # self.agentManager.update(self.agent, "OnDuty", "Idle")
 
 
 
     def get_task_info(self):
         res = []
-        for item in itemManager.itemList:
+        for item in self.itemManager.itemList:
             if item.state == Item_State.Processed:
-                for agent in agentManager.agentList:
+                for agent in self.agentManager.agentList:
                     if item.id in agent.taskList:
                         res.append(
                             {"机器人ID": agent.id, "物品ID": item.id, "完成时间": agent.cur_task_accomplish_time})

@@ -2,7 +2,6 @@ from model.Map import Map
 from utils.Singleton import Singleton
 import sys
 import time
-
 from math import sqrt
 from model.ChangerStation import ChangerStation
 from utils.logging_stream_handler import logger
@@ -68,10 +67,32 @@ class AgentManager(metaclass=Singleton):
         self.agent_state_dict[cur_state].append(agent)
         agent.update_state(cur_state)
 
+    def analyze_agents(self, result_dict):
+        busy_totals = {}
+        odometer_totals = {}
 
-    def analyze_agents(self):
-        for i, agent in enumerate(self.agentList):
-            logger.info(f"agent{i}, busy = {agent.busy_time_so_far} second; odometer = {agent.odometer} meter.")
+        for task in result_dict:
+            res = result_dict[task]
+            agent = res.task.agent
+
+            if agent.id in ['s0', 's1', 's2', 's3', 's4']:
+                if agent.id not in busy_totals:
+                    busy_totals[agent.id] = set()
+                if agent.id not in odometer_totals:
+                    odometer_totals[agent.id] = set()
+
+                if agent.busy_time_so_far not in busy_totals[agent.id]:
+                    busy_totals[agent.id].add(agent.busy_time_so_far)
+
+                if agent.odometer not in odometer_totals[agent.id]:
+                    odometer_totals[agent.id].add(agent.odometer)
+
+        for agent in self.agentList:
+            busy_total = sum(busy_totals.get(agent.id, []))
+            odometer_total = sum(odometer_totals.get(agent.id, []))
+            logger.info(
+                f"agent{agent.id}, Total busy time: {busy_total} second; Total odometer: {odometer_total} meter.")
+
 
     def has_pending_items(self):
         return bool(self.agent_state_dict['OnDuty']) or bool(self.agent_state_dict['Pausing']) or bool(

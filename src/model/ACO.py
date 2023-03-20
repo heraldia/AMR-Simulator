@@ -18,7 +18,7 @@ class Ant():
         else:
             self.position = posi
         if dest == None:
-            self.destination = [len(map_data)-1,len(map_data)-1]
+            self.destination = [len(map_data)-1, len(map_data)-1]
         else:
             self.destination = dest
         #Step 1:不断找下一节点，直到走到终点或者力竭 
@@ -119,7 +119,7 @@ class ACO():
             'pher_imp': pher_imp
         }
         self.map_data = map_data.copy()        #地图数据
-        self.map_lenght = max([self.map_data.shape[0], self.map_data.shape[1]])  #地图尺寸,用来标定蚂蚁的最大体力
+        self.map_length = max([self.map_data.shape[0], self.map_data.shape[1]])  #地图尺寸,用来标定蚂蚁的最大体力
         self.pher_data = pher_init*np.ones(shape=[self.map_data.shape[0]*self.map_data.shape[1],
                                             self.map_data.shape[0]*self.map_data.shape[1]])    #信息素矩阵
         self.evaporate = evaporate #信息素挥发系数
@@ -137,44 +137,44 @@ class ACO():
             print('第',i,'代: ',end = '')
             #Step 1:当代若干蚂蚁依次行动
             for j in range(self.ant_num):   
-                ant = Ant(max_step=self.map_lenght*3,pher_imp=self.ant_params['pher_imp'],dis_imp=self.ant_params['dis_imp'])
+                ant = Ant(max_step=self.map_length*3,pher_imp=self.ant_params['pher_imp'],dis_imp=self.ant_params['dis_imp'])
                 ant.run(map_data=self.map_data.copy(),pher_data=self.pher_data,posi=self.init,dest=self.dest)
                 if ant.successful == True:  #若成功，则记录路径信息
                     success_way_list.append(ant.record_way)
             print(' 成功率:',len(success_way_list),end= ' ')
             #Step 2:计算每条路径对应的长度，后用于信息素的生成量
-            way_lenght_list = []
+            way_length_list = []
             for j in success_way_list:
-                way_lenght_list.append(self.calc_total_lenght(j))
+                way_length_list.append(self.calc_total_length(j))
             #Step 3:更新信息素浓度
             #  step 3.1: 挥发
             self.pher_data = self.evaporate*self.pher_data
             #  step 3.2: 叠加新增信息素
             for k,j in enumerate(success_way_list):
                 j_2 = np.array(j)
-                j_3 = j_2[:,0]*self.map_lenght+j_2[:,1]
+                j_3 = j_2[:,0]*self.map_length+j_2[:,1]
                 for t in range(len(j_3)-1):
-                    self.pher_data[j_3[t]][j_3[t+1]] += self.ant_gener_pher/way_lenght_list[k]
+                    self.pher_data[j_3[t]][j_3[t+1]] += self.ant_gener_pher/way_length_list[k]
             #Step 4: 当代的首尾总总结工作
-            self.generation_aver.append(np.average(way_lenght_list))
-            self.generation_best.append(min(way_lenght_list))
-            if self.way_len_best>min(way_lenght_list):
-                a_1 = way_lenght_list.index(min(way_lenght_list))
-                self.way_len_best = way_lenght_list[a_1]
+            self.generation_aver.append(np.average(way_length_list))
+            self.generation_best.append(min(way_length_list))
+            if self.way_len_best>min(way_length_list):
+                a_1 = way_length_list.index(min(way_length_list))
+                self.way_len_best = way_length_list[a_1]
                 self.way_data_best = copy.deepcopy(success_way_list[a_1])
-            print('平均长度:',np.average(way_lenght_list),'最短:',np.min(way_lenght_list))
+            print('平均长度:',np.average(way_length_list),'最短:',np.min(way_length_list))
         return self.way_len_best
 
     
-    def calc_total_lenght(self,way):
-        lenght = 0
+    def calc_total_length(self,way):
+        length = 0
         for j1 in range(len(way)-1):
             a1 = abs(way[j1][0]-way[j1+1][0])+abs(way[j1][1]-way[j1+1][1])
             if a1 == 2:
-                lenght += 1.41421
+                length += 1.41421
             else:
-                lenght += 1
-        return lenght
+                length += 1
+        return length
 
 
 
@@ -201,7 +201,7 @@ class ACO_IMPROVED():
             'pher_imp': pher_imp
         }
         self.map_data = map_data.copy()        #地图数据
-        self.map_lenght = max([self.map_data.shape[0], self.map_data.shape[1]])  #地图尺寸,用来标定蚂蚁的最大体力
+        self.map_length = max([self.map_data.shape[0], self.map_data.shape[1]])  #地图尺寸,用来标定蚂蚁的最大体力
         self.pher_data = pher_init*np.ones(shape=[self.map_data.shape[0]*self.map_data.shape[1],
                                             self.map_data.shape[0]*self.map_data.shape[1]])    #信息素矩阵
         self.evaporate = evaporate #信息素挥发系数
@@ -219,51 +219,51 @@ class ACO_IMPROVED():
             print('第',i,'代: ',end = '')
             #Step 1:当代若干蚂蚁依次行动
             for j in range(self.ant_num):   
-                ant = Ant(max_step=self.map_lenght*3,pher_imp=self.ant_params['pher_imp'],dis_imp=self.ant_params['dis_imp'])
+                ant = Ant(max_step=self.map_length*3,pher_imp=self.ant_params['pher_imp'],dis_imp=self.ant_params['dis_imp'])
                 ant.run(map_data=self.map_data.copy(),pher_data=self.pher_data,posi=self.init,dest=self.dest)
                 if ant.successful == True:  #若成功，则记录路径信息
                     success_way_list.append(ant.record_way)
             print(' 成功率:',len(success_way_list),end= ' ')
             #Step 2:计算每条路径对应的长度，后用于信息素的生成量
-            way_lenght_list = []
+            way_length_list = []
             for j in success_way_list:
-                way_lenght_list.append(self.calc_total_lenght(j))
+                way_length_list.append(self.calc_total_length(j))
             #Step 3:更新信息素浓度
             #  step 3.1: 挥发
             self.pher_data = self.evaporate*self.pher_data
             #  step 3.2: 叠加新增信息素
             for k,j in enumerate(success_way_list):
                 j_2 = np.array(j)
-                j_3 = j_2[:,0]*self.map_lenght+j_2[:,1]
+                j_3 = j_2[:,0]*self.map_length+j_2[:,1]
                 for t in range(len(j_3)-1):
-                    self.pher_data[j_3[t]][j_3[t+1]] += self.ant_gener_pher/way_lenght_list[k]
+                    self.pher_data[j_3[t]][j_3[t+1]] += self.ant_gener_pher/way_length_list[k]
             # step 3.3: 精英蚂蚁路径信息素额外增加
-            minidx = np.argmin(way_lenght_list)
+            minidx = np.argmin(way_length_list)
             j = success_way_list[minidx]
             j_2 = np.array(j)
-            j_3 = j_2[:,0]*self.map_lenght+j_2[:,1]
+            j_3 = j_2[:,0]*self.map_length+j_2[:,1]
             for t in range(len(j_3)-1):
-                self.pher_data[j_3[t]][j_3[t+1]] += self.ant_gener_pher/way_lenght_list[minidx]
+                self.pher_data[j_3[t]][j_3[t+1]] += self.ant_gener_pher/way_length_list[minidx]
             #Step 4: 当代的首尾总总结工作
-            self.generation_aver.append(np.average(way_lenght_list))
-            self.generation_best.append(min(way_lenght_list))
-            if self.way_len_best>min(way_lenght_list):
-                a_1 = way_lenght_list.index(min(way_lenght_list))
-                self.way_len_best = way_lenght_list[a_1]
+            self.generation_aver.append(np.average(way_length_list))
+            self.generation_best.append(min(way_length_list))
+            if self.way_len_best>min(way_length_list):
+                a_1 = way_length_list.index(min(way_length_list))
+                self.way_len_best = way_length_list[a_1]
                 self.way_data_best = copy.deepcopy(success_way_list[a_1])
-            print('平均长度:',np.average(way_lenght_list),'最短:',np.min(way_lenght_list))
+            print('平均长度:',np.average(way_length_list),'最短:',np.min(way_length_list))
         return self.way_len_best
 
     
-    def calc_total_lenght(self,way):
-        lenght = 0
+    def calc_total_length(self,way):
+        length = 0
         for j1 in range(len(way)-1):
             a1 = abs(way[j1][0]-way[j1+1][0])+abs(way[j1][1]-way[j1+1][1])
             if a1 == 2:
-                lenght += 1.41421
+                length += 1.41421
             else:
-                lenght += 1
-        return lenght
+                length += 1
+        return length
 
 if __name__ == '__main__':
     map = '''
