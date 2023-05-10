@@ -2,6 +2,7 @@ from model.Map import Map
 from utils.Singleton import Singleton
 import sys
 import time
+
 from math import sqrt
 from model.ChangerStation import ChangerStation
 from utils.logging_stream_handler import logger
@@ -35,26 +36,28 @@ class AgentManager(metaclass=Singleton):
         # 等待机器人充电完成
         time_elapsed = 0  # 定义时间流逝
         while time_elapsed < time_to_charge:
-            time.sleep(1)
+            # time.sleep(1)
             time_elapsed += 1
 
         # 充电完成，将机器人设置为满点，并将其状态设置为Idle
         agent.current_battery = agent.max_battery
         agent.state = agent.state.Idle
 
-    def check_battery_level(self, checkedAgent):      #检查机器人的电量并决定是否将其发送到充电站,仅仅用来检查单独的机器人的电量，并决定是否将该机器人发送到充电站。
-        if checkedAgent.current_battery < checkedAgent.battery_threshold:
+    def check_battery_level(self, checkedAgent, battery_threshold, map):      #检查机器人的电量并决定是否将其发送到充电站,仅仅用来检查单独的机器人的电量，并决定是否将该机器人发送到充电站。
+        if checkedAgent.current_battery < battery_threshold:
             logger.info(f"Agent {checkedAgent.id} is low on battery and needs to charge.")
+            self.charge(checkedAgent, map)  # 调用charge()方法来充电机器人。
+            logger.info(f"Agent {checkedAgent.id} has been fully charged.")
             # map.charger_home_location.charge(agent)  #发送机器人到充电站充电，调用ChangerStation.py中的charge()方法来充电机器人。
 
         else:
             logger.info(f"Agent {checkedAgent.id} has sufficient battery level.")
 
 
-    def check_whole_battery_level(self,charger_home_station):
-        for agent in self.agentList:
-            if agent.state == "Idle":
-                self.check_battery_level(agent.map.charger_home_location)
+    #def check_whole_battery_level(self,charger_home_station):
+     #   for agent in self.agentList:
+      #      if agent.state == "Idle":
+       #         self.check_battery_level(agent.map.charger_home_location)
 
 
     def add(self, agent):
@@ -67,32 +70,10 @@ class AgentManager(metaclass=Singleton):
         self.agent_state_dict[cur_state].append(agent)
         agent.update_state(cur_state)
 
-    def analyze_agents(self, result_dict):
-        busy_totals = {}
-        odometer_totals = {}
 
-        for task in result_dict:
-            res = result_dict[task]
-            agent = res.task.agent
-
-            if agent.id in ['s0', 's1', 's2', 's3', 's4']:
-                if agent.id not in busy_totals:
-                    busy_totals[agent.id] = set()
-                if agent.id not in odometer_totals:
-                    odometer_totals[agent.id] = set()
-
-                if agent.busy_time_so_far not in busy_totals[agent.id]:
-                    busy_totals[agent.id].add(agent.busy_time_so_far)
-
-                if agent.odometer not in odometer_totals[agent.id]:
-                    odometer_totals[agent.id].add(agent.odometer)
-
-        for agent in self.agentList:
-            busy_total = sum(busy_totals.get(agent.id, []))
-            odometer_total = sum(odometer_totals.get(agent.id, []))
-            logger.info(
-                f"agent{agent.id}, Total busy time: {busy_total} second; Total odometer: {odometer_total} meter.")
-
+    def analyze_agents(self):
+        for i, agent in enumerate(self.agentList):
+            logger.info(f"agent{i}, busy = {agent.busy_time_so_far} second; odometer = {agent.odometer} meter.")
 
     def has_pending_items(self):
         return bool(self.agent_state_dict['OnDuty']) or bool(self.agent_state_dict['Pausing']) or bool(

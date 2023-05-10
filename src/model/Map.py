@@ -29,6 +29,7 @@ class Map:
         return self.map
 
     def random_fill_map(self):   #随机生成地图
+        # self.charger_home_location = []  #定义充电点的位置
         for i in range(len(self.map)):   #行的取值范围是默认编辑器的行数
             for j in range(len(self.map[0])):   #定义列的取值范围
                 shelf = Shelf((i,j))
@@ -36,6 +37,7 @@ class Map:
                     self.map[i][j] = shelf
                 if self.map[i][j] == 'h':
                     self.charger_home_location = (i, j)
+                    # self.charger_home_location.append((i, j))  #定义充电点的位置
                     
     def get_charger_home_location(self):
         return self.charger_home_location

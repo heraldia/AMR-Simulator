@@ -52,7 +52,7 @@ class Agent:
 
         self.fetching_time = 1 # s
         self.dispatching_time = 1 # s
-        self.battery_consumption_rate = 0.01  ## 电量消耗率，表示每走1m机器人消耗1%电量
+        self.battery_consumption_rate = 0.1  ## 电量消耗率，表示每走1m机器人消耗10%电量
 
 
 
@@ -65,17 +65,18 @@ class Agent:
     def set_location(self, location):
         self.location = location
 
-    def consume_battery(self, distance):   #机器人消耗电量，传入距离，计算机器人消耗的电量
-        consumption = distance * self.battery_consumption_rate  #计算消耗的电量
-        self.current_battery = max(0, self.current_battery-consumption)  #更新当前电量，取0和当前电量减去消耗电量的最大值
+    # def consume_battery(self, distance):   #机器人消耗电量，传入距离，计算机器人消耗的电量
+    #     consumption = distance * self.battery_consumption_rate  #计算消耗的电量
+    #     self.current_battery = max(0, self.current_battery-consumption)  #更新当前电量，取0和当前电量减去消耗电量的最大值
 
     def increment_odometer(self):    #定义距离的增加（自增1）
         self.odometer += 1   #原始值增加1
-        self.consume_battery(1)
+        # self.consume_battery(1)
 
     def update_odometer(self, travelled_distance):#自定义距离的增加，传进来多少增加多少
         self.odometer += travelled_distance   #odometer=odometer+travelled_distance\
-        self.consume_battery(travelled_distance)
+        consumption = travelled_distance * self.battery_consumption_rate  # 计算消耗的电量
+        self.current_battery -= consumption  # 更新机器人的电量
 
     def idle_time_accumulated(self):
         self.idle_time_so_far += 1
