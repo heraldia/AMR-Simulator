@@ -4,12 +4,14 @@ from utils.logging_stream_handler import logger    #logger函数监控整个项�
 from model.Agent import Agent   #定义搬运机器人
 from model.AgentManager import AgentManager   #定义机器人管理单位
 from model.ItemManager import ItemManager
+from model.TaskAssignment import TaskAssignment
 from model.Task import Task   #定义任务和需求
 from model.ChangerStation import ChangerStation     #定义充电点
 from model.Session import Session    #定义一次从头到尾的实验
 from utils.Constants import NUMBER_OF_AGENT    #定义一些永远不变的函数
 import concurrent.futures
 import pickle
+import sys
 
 
 map = Map("data/scene.dat")
@@ -30,8 +32,25 @@ logger.info(charger_home_location)   #监控charger home location
 
 charger_station = ChangerStation(charger_home_location)
 
-
 itemManager = ItemManager()
+originalItemList = itemManager.get_a_random_item_list(map.get_map()) 
+#print(35, sys._getframe().f_lineno, f'| 1 = {originalItemList}', ) # 2023_0509_2323
+#print(originalItemList[0].id)
+
+# todo base_on_principle()
+"""
+for principle_i in principle_list:
+    thisWeekItemList = base_on_principle(principle_i, originalItemList)
+    for todayItemList in thisWeekItemList:
+        ...
+"""
+# 2023_0509_2223 GA generates this itemManager
+taskAssignment_object = TaskAssignment(originalItemList)
+taskAssignment_object.itemListGeneratedByAlgorithm('GA')
+_list = taskAssignment_object.getItemList()
+print(50, sys._getframe().f_lineno, f'| 1 = {1}', _list) # 2023_0509_2335
+#itemManager = ItemManager(_list)
+print(51, sys._getframe().f_lineno, f'| 1 = {itemManager.itemList}', itemManager.itemList ) # 2023_0509_2327
 
 agentManager = AgentManager()
 for i in range(NUMBER_OF_AGENT):

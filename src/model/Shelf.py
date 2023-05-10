@@ -1,8 +1,8 @@
 from .Item import Item
 from utils import Constants
-from .ItemManager import ItemManager
+#from .ItemManager import ItemManager
 
-itemManager = ItemManager()
+#itemManager = ItemManager()
 class Shelf:
     """
     item can be picked from both side
@@ -26,7 +26,8 @@ class Shelf:
     def random_fill_shelf(self):
         for i in range(self.layer):
             item = Item()
+            #print(29, self.location)
             item.random_parameters((*self.location, i))
-            itemManager.add_item(item)
+            #itemManager.add_item(item)
             self.item_on_each_layer.append(item)
 

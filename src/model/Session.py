@@ -9,6 +9,9 @@ from .Shelf import Shelf
 
 
 class Session:
+    """
+    In a certain map with loaded shelves, a session is {that some agents complish a item_list (from self.itemManager)}
+    """
 
 
     def __init__(self, map, agentManager, itemManager):
@@ -34,7 +37,7 @@ class Session:
 
 
         while self.itemManager.get_number_of_items():
-            _item = self.itemManager.pick_an_item()
+            _item = self.itemManager.pick_an_item_from_head()
             if self.agentManager.agent_state_dict["Idle"]:
                 _agent = self.agentManager.agent_state_dict["Idle"][0]
                 self.agentManager.update(_agent, "Idle", "OnDuty")
