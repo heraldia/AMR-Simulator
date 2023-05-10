@@ -10,6 +10,7 @@ https://link.springer.com/article/10.1007/BF02729112
 https://www.sciencedirect.com/science/article/abs/pii/S0305054896000615
 
 # AI for game
+[tag_Genetic_Algothm]
 - Genetic Algorithm for game / Evolution Strategy.
 - https://github.com/TsReaper/AI-Plays-FlappyBird
 - Swam Intelligence, SI
