@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 doc/chat.md
 doc/trash.md
+src/buffer.py

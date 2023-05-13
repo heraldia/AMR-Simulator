@@ -17,4 +17,9 @@ cd src/
 python main.py
 
 ```
+# Design
+
+# Definition
+    one Task is one trip
+
 # Create on 2022_1216_2044

@@ -38,11 +38,13 @@ class Agent:
         self.id = _type + str(seq_num)
         self.state = State.Idle
         self.odometer = 0
+        self.weight_this_trip = 0
         self.idle_time_so_far = 0
         self.busy_time_so_far = 0
         self.init_location()
         self.current_battery = 100  #初始电量为100
         self.max_battery = 100  #最大电量为100
+        self.max_load = 200
         self.battery_threshold = 20  #假设电量低于20度电时需要充电
         self.moving_speed = 0.5 # m/s
         self.rising_arm_speed = 0.1 # m/s
@@ -84,6 +86,12 @@ class Agent:
     def update_busy_time_accumulated(self, time_duration):
         self.busy_time_so_far += time_duration 
 
+    def reset_weight(self):
+        self.weight_this_trip = 0
+
+    def increase_weight(self, item_weight):
+        self.weight_this_trip += item_weight
+
     def update_state(self, state_str):
         if "Idle" in state_str:
             self.state = State.Idle
@@ -91,8 +99,6 @@ class Agent:
             self.state = State.OnDuty
         elif "Pausing" in state_str:
             self.state = State.Pausing
-
-
 
 
 

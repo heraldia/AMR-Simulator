@@ -10,24 +10,28 @@ from .Shelf import Shelf
 
 class Session:
     """
-    In a certain map with loaded shelves, a session is {that some agents complish a item_list (from self.itemManager)}
+    In a certain map with loaded shelves, a session is {that some agents accomplish a taskList (from self.itemManager)}
     """
 
 
-    def __init__(self, map, agentManager, itemManager):
+    def __init__(self, map, agentManager):
         self.cur_task_accomplish_time = None
         only_fetch_item = True
         # fetch_and_replenish_item
         self.totalHours = 0
         self.map = map
         self.agentManager = agentManager
-        self.itemManager = itemManager
-        self.item_list = []  # 添加item_list属性
+        #self.itemManager = itemManager
+        self.taskList = []  # 
         self.cur_task_accomplish_time = 0  # 添加 cur_task_accomplish_time 属性
+
 
     #设置地图
     def set_map(self, map):
         self.map = map
+
+    def set_taskList(self, taskList):
+        self.taskList = taskList
 
     # sequential, one trip for one item.
     def process_for_agent(self, _agent):
@@ -35,9 +39,9 @@ class Session:
         i=0
 
 
+        print(42, sys._getframe().f_lineno, f'| 1 = {self.taskList}', ) # 2023_0512_2111
 
-        while self.itemManager.get_number_of_items():
-            _item = self.itemManager.pick_an_item_from_head()
+        for _item in self.taskList:
             if self.agentManager.agent_state_dict["Idle"]:
                 _agent = self.agentManager.agent_state_dict["Idle"][0]
                 self.agentManager.update(_agent, "Idle", "OnDuty")

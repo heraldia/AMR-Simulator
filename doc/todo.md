@@ -32,3 +32,20 @@ while
         GA + principle = average
         SPO + principle() = average
 
+while 
+    taskList = fixed
+    while 
+        session: a variety of taskList. 
+        each session -> list_from_GA()
+    average
+
+
+# 2023_0512_2153
+if agent1.weight_this_trip + next_item_weight > agent1.max_load:
+    back to destination
+    update_state(Idle)
+    agent1.reset_weight()
+
+else:
+    agent1.increase_weight(next_item_weight)
+    next trip

@@ -2,8 +2,11 @@ GlobalClock: counter
 multithread for task execution
 pickle for a session of shelf info
 
+- while session 
 - import some existing pathfinding-algorithms
 - add obstacle avoidance
 - create replanning strategies when detecting obstacles.
 - redo experiment
 
+scrum master
+project manager

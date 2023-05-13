@@ -6,6 +6,7 @@ from model.AgentManager import AgentManager   #定义机器人管理单位
 from model.ItemManager import ItemManager
 from model.TaskAssignment import TaskAssignment
 from model.Task import Task   #定义任务和需求
+from model.TaskList import TaskList   #
 from model.ChangerStation import ChangerStation     #定义充电点
 from model.Session import Session    #定义一次从头到尾的实验
 from utils.Constants import NUMBER_OF_AGENT    #定义一些永远不变的函数
@@ -32,10 +33,20 @@ logger.info(charger_home_location)   #监控charger home location
 
 charger_station = ChangerStation(charger_home_location)
 
+agentManager = AgentManager()
+for i in range(NUMBER_OF_AGENT):
+    agent = Agent('s', i)
+    agent.set_location(charger_home_location)
+    agentManager.add(agent)
+
 itemManager = ItemManager()
-originalItemList = itemManager.get_a_random_item_list(map.get_map()) 
-#print(35, sys._getframe().f_lineno, f'| 1 = {originalItemList}', ) # 2023_0509_2323
-#print(originalItemList[0].id)
+taskList = TaskList()
+session = Session(map, agentManager)
+# ## 设置地图进去
+session.set_map(map)
+
+print(35, sys._getframe().f_lineno, f'| 1 = {taskList}', ) # 2023_0509_2323
+#print(taskList.get_task_list())
 
 # todo base_on_principle()
 """
@@ -44,29 +55,27 @@ for principle_i in principle_list:
     for todayItemList in thisWeekItemList:
         ...
 """
-# 2023_0509_2223 GA generates this itemManager
-taskAssignment_object = TaskAssignment(originalItemList)
-taskAssignment_object.itemListGeneratedByAlgorithm('GA')
-_list = taskAssignment_object.getItemList()
-print(50, sys._getframe().f_lineno, f'| 1 = {1}', _list) # 2023_0509_2335
-#itemManager = ItemManager(_list)
-print(51, sys._getframe().f_lineno, f'| 1 = {itemManager.itemList}', itemManager.itemList ) # 2023_0509_2327
+taskAssignment_algo_list = ['GA', 'PSO']
+for taskAssignment_algo_name in taskAssignment_algo_list:
+    c = 0 # firstTime
+    total_number_of_session = 5
+    while c < total_number_of_session:
+        # 2023_0509_2223 GA generates this taskList
+        taskAssignment_object = TaskAssignment(taskList.get_task_list())
+        taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
+        _list = taskAssignment_object.getItemList()
+        print(50, sys._getframe().f_lineno, f'| 1 = {1}', _list) # 2023_0509_2335
+        session.set_taskList(_list)
+        #print(51, sys._getframe().f_lineno, f'| 1 = {itemManager.itemList}', itemManager.itemList ) # 2023_0509_2327
 
-agentManager = AgentManager()
-for i in range(NUMBER_OF_AGENT):
-    agent = Agent('s', i)
-    agent.set_location(charger_home_location)
-    agentManager.add(agent)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=NUMBER_OF_AGENT) as executor:
+            results = executor.map(session.process_for_agent, session.agentManager.agentList) #调用session的process_for_agent函数
 
+            for result in results:
+                print(result)
+                # statistics todo
+        c += 1
 
-session = Session(map, agentManager, itemManager)
-# ## 设置地图进去
-session.set_map(map)
-with concurrent.futures.ThreadPoolExecutor(max_workers=NUMBER_OF_AGENT) as executor:
-    results = executor.map(session.process_for_agent, session.agentManager.agentList)#调用session的process_for_agent函数
-
-    for result in results:
-        print(result)
 # result = session.process_for_agent() #调用session的process_for_agent函数
 
 

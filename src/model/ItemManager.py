@@ -36,16 +36,3 @@ class ItemManager(metaclass=Singleton):
     def get_number_of_items(self):
         return len(self.itemList)
 
-    def get_a_random_item_list(self, map):
-        _list = []
-        i = self.len_item_list
-        while i:
-            item = Item()
-            x = random.randint(0, len(map))
-            y = random.randint(0, len(map[0]))
-            z = random.randint(0,3)
-            item.random_parameters((x,y,z))
-            _list.append(item)
-            self.itemList.append(item)
-            i -= 1
-        return _list

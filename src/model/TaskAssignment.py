@@ -10,7 +10,16 @@ class TaskAssignment(object):
     def __init__(self, originalItemList=None):
         self.itemList = originalItemList
 
-    def itemListGeneratedByAlgorithm(self, algorithmName):
+    def itemListGeneratedByAlgorithm(self, algorithmName, notFirstTime=0):
+        """
+        _summary_
+
+        Args:
+            algorithmName (_type_): _description_
+            firstTime (int, optional): Defaults to 0, means this is the firstTime call; 1- not firstTime.
+        """
+        if not notFirstTime:
+            return 
         if not algorithmName:
             pass
         if algorithmName == 'GA':
