@@ -26,3 +26,9 @@ objective function:
 3. Highest value: battery consumption, item price, item weight, item size
     Item weight, item size: They determine speed, and then speed determines battery consumption
 [Consider value as a objective function can be my novelty]
+
+
+# 20230515
+1. 为什么实验结果在加入tasklist之后翻了5倍？ (整个tasklist被进行了5次): done total_number_or_session被定义成5，一次session表示整个仓库货物全部被取出来的一次结果，所以一共进行了5次，最后的结果也翻倍成5
+2. agent put items into the cart, up to capacity, and then move.  one agent can pick up multiple items. Done
+3. Strategy change. todo not home -> home, but home-> item1 location -> item2 location -> item3 location -> home.  Done

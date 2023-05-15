@@ -37,15 +37,23 @@ class Session:
     def process_for_agent(self, _agent):
         task_dict={}
         i=0
+        item_list=[]
 
 
-        print(42, sys._getframe().f_lineno, f'| 1 = {self.taskList}', ) # 2023_0512_2111
+
+        # print(42, sys._getframe().f_lineno, f'| 1 = {self.taskList}', ) # 2023_0512_2111
 
         for _item in self.taskList:
             if self.agentManager.agent_state_dict["Idle"]:
                 _agent = self.agentManager.agent_state_dict["Idle"][0]
                 self.agentManager.update(_agent, "Idle", "OnDuty")
-                task = Task(_agent, _item, self.map)
+                for _item in self.taskList:
+                    if _agent.add_item_to_agent(_item):
+                        item_list.append(_item)
+                        self.taskList.remove(_item)
+                    else:
+                        break
+                task = Task(_agent, item_list, self.map)
                 task_dict[i]=[tuple(_agent.location), tuple(_item.location), _agent.id, _item.id, self.cur_task_accomplish_time]  # 将 cur_task_accomplish_time 添加到 item_dict
                 i=i+1
                 task.pre_update_battery_threshold() #更新当前task中的battery_threshold
@@ -54,6 +62,7 @@ class Session:
                 logger.info(f"{_agent.id}, {_item.id}")
                 logger.info(f'This task was accomplished within {self.cur_task_accomplish_time} s')
                 logger.info(f'This agent worked {_agent.busy_time_so_far} s')
+                item_list = []
 
         self.agentManager.analyze_agents()
 

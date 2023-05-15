@@ -14,54 +14,70 @@ class Task:
     self.assignment -> algorithm, methodology
     one task is one trip
     """
-    def __init__(self, agent, item, map):
+    def __init__(self, agent, item_list, map):
         self.agent = agent
-        self.item = item
+        self.item_list = item_list
         # ## 设置地图
         self.map = map
         self.distance = 0
-        self.item.update_state("Reserved")
+        for item in self.item_list:
+            item.update_state("Reserved")
         self.battery_threshold = 0
         #itemManager.remove_item(item)
         #agentManager.update(self.agent, "Idle", "OnDuty")
 
-
     def pre_update_battery_threshold(self):
-        strategy = Strategy(self.agent, self.item, self.map, 'simple_hamming_distance')
-
-        self.distance = strategy.get_final_path_distance()
+        total_distance = 0
+        for item in self.item_list:
+            strategy = Strategy(self.agent, item, self.map, 'simple_hamming_distance')
+            item_distance = strategy.get_final_path_distance()
+            total_distance += item_distance
+            self.agent.location = item.location[:2]
+        self.distance = total_distance
         self.battery_threshold = self.distance * self.agent.battery_consumption_rate
+        self.agent.location = self.map.charger_home_location
 
 
     def compute_a_trip_time(self):
-        logger.debug(self.agent.location)
-        logger.debug(self.item.location)
-
-        # todo
-        # self.distance = A_star_algorithm()
-
-        # simple algorithm,
-        # strategy = Strategy(self.agent, self.item, self.map, 'simple_hamming_distance')
-
-        # # ## 运行蚁群算法
-        # strategy = Strategy(self.agent, self.item, self.map, 'ACO')
+        total_distance = 0
+        total_time = 0
+        for item in self.item_list:
+            logger.debug(self.agent.location)
+            logger.debug(item.location)
 
 
-        # ## 运行精英蚁群算法
-        strategy = Strategy(self.agent, self.item, self.map, 'simple_hamming_distance')
 
-        self.distance = strategy.get_final_path_distance()
-        item_height = self.item.location[2] * Constants.SHELF_HEIGHT / Constants.SHELF_LAYER 
-        self.task_fulfill_time = self.distance * Constants.SHELF_SIDE_LENGTH / self.agent.moving_speed + item_height / self.agent.rising_arm_speed + item_height / self.agent.dropping_arm_speed + 2 * self.agent.turning_time + self.agent.fetching_time + self.agent.dispatching_time
+            # todo
+            # self.distance = A_star_algorithm()
 
+            # simple algorithm,
+            # strategy = Strategy(self.agent, self.item, self.map, 'simple_hamming_distance')
+
+            # # ## 运行蚁群算法
+            # strategy = Strategy(self.agent, self.item, self.map, 'ACO')
+
+
+            # ## 运行精英蚁群算法
+            strategy = Strategy(self.agent, item, self.map, 'simple_hamming_distance')
+            item_distance = strategy.get_final_path_distance()
+            total_distance += item_distance
+            item_height = item.location[2] * Constants.SHELF_HEIGHT / Constants.SHELF_LAYER
+            item_time = item_distance * Constants.SHELF_SIDE_LENGTH / self.agent.moving_speed + item_height / self.agent.rising_arm_speed + item_height / self.agent.dropping_arm_speed + 2 * self.agent.turning_time + self.agent.fetching_time + self.agent.dispatching_time
+            total_time += item_time
+            self.agent.location = item.location[:2]
+
+        self.distance = total_distance
+        self.task_fulfill_time = total_time
         self.agent.update_odometer(self.distance)
         self.agent.update_busy_time_accumulated(self.task_fulfill_time)
         self.processed_item()
+        self.agent.location = self.map.charger_home_location
     
         return self.task_fulfill_time    
 
     def processed_item(self):
-        self.item.update_state("Processed")
+        for item in self.item_list:
+            item.update_state("Processed")
         self.agent.update_state("Idle")
         agentManager.update(self.agent, "OnDuty", "Idle")
 

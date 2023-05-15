@@ -32,6 +32,7 @@ class AgentManager(metaclass=Singleton):
 
         # 机器人在充电时不能执行任务，将其状态设置为pausing
         agent.state = agent.state.Pausing
+        # agent.location = map.charger_home_location
 
         # 等待机器人充电完成
         time_elapsed = 0  # 定义时间流逝
