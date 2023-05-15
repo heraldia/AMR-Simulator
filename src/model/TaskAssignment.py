@@ -25,12 +25,12 @@ class TaskAssignment(object):
         if algorithmName == 'GA':
             ga_object = GA(self.itemList)
             self.itemList = ga_object.generate(self.itemList)
-            print(17, sys._getframe().f_lineno, f'| 1 = {self.itemList}', ) # 2023_0509_2331
+            # print(17, sys._getframe().f_lineno, f'| 1 = {self.itemList}', ) # 2023_0509_2331
             return 
         elif algorithmName == 'PSO':
             return 
 
     def getItemList(self):
-        print(25, sys._getframe().f_lineno, f'| 1 = {self.itemList}', ) # 2023_0509_23322
+        # print(25, sys._getframe().f_lineno, f'| 1 = {self.itemList}', ) # 2023_0509_23322
         return self.itemList
         

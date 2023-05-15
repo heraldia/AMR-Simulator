@@ -5,7 +5,7 @@ import sys
 
 class ItemManager(metaclass=Singleton):
     def __init__(self, len_item_list=None, initItemList = None):
-        print(7, sys._getframe().f_lineno, f'| 1 = {initItemList}', ) # 2023_0509_2340
+        # print(7, sys._getframe().f_lineno, f'| 1 = {initItemList}', ) # 2023_0509_2340
         if not initItemList:
             self.itemList = []
         else:

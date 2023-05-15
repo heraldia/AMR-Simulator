@@ -67,9 +67,6 @@ class Agent:
     def set_location(self, location):
         self.location = location
 
-    # def consume_battery(self, distance):   #机器人消耗电量，传入距离，计算机器人消耗的电量
-    #     consumption = distance * self.battery_consumption_rate  #计算消耗的电量
-    #     self.current_battery = max(0, self.current_battery-consumption)  #更新当前电量，取0和当前电量减去消耗电量的最大值
 
     def increment_odometer(self):    #定义距离的增加（自增1）
         self.odometer += 1   #原始值增加1
@@ -91,6 +88,18 @@ class Agent:
 
     def increase_weight(self, item_weight):
         self.weight_this_trip += item_weight
+
+    def add_item_to_agent(self,item):
+        if self.weight_this_trip + item.weight > self.max_load:
+            #back to home(charger station)
+            # self.update_state("Idle")
+            self.reset_weight()
+            return False
+        else:
+            self.increase_weight(item.weight)
+            # next trip
+            return True
+
 
     def update_state(self, state_str):
         if "Idle" in state_str:

@@ -35,7 +35,7 @@ while
 while 
     taskList = fixed
     while 
-        session: a variety of taskList. 
+        session: a variety of taskList.   
         each session -> list_from_GA()
     average
 
@@ -49,3 +49,8 @@ if agent1.weight_this_trip + next_item_weight > agent1.max_load:
 else:
     agent1.increase_weight(next_item_weight)
     next trip
+Done
+
+# 2023_0515_1906
+Make a sequence of tasklist, in due time, or in weight, or in distance. 
+Add GA Algorithm + PSO Algorithm +principle
