@@ -58,7 +58,7 @@ for principle_i in principle_list:
 taskAssignment_algo_list = ['GA', 'PSO']
 for taskAssignment_algo_name in taskAssignment_algo_list:
     c = 0 # firstTime
-    total_number_of_session = 1   #定义一共有几次实验，每次session的tasklist都会进行更新迭代 todo
+    total_number_of_session = 5   #定义一共有几次实验，每次session的tasklist都会进行更新迭代 todo
     while c < total_number_of_session:
         # 2023_0509_2223 GA generates this taskList
         taskAssignment_object = TaskAssignment(taskList.get_task_list())

@@ -42,3 +42,36 @@ objective function:
         b) Crossover and generate new population
         c) Perform mutation on new population
         d) Calculate fitness for new population
+  4) A Fitness Score is given to each individual which shows the ability of an individual to “compete”. The individual having optimal fitness score (or near optimal) are sought.
+  5) experiment result: 
+     1st round: 2023-05-16 21:03:47,631 - INFO - utils.logging_stream_handler:77 - agent0, busy = 14646.0 second; odometer = 4540 meter. 
+                     2023-05-16 21:03:47,631 - INFO - utils.logging_stream_handler:77 - agent1, busy = 15148.0 second; odometer = 4609 meter.
+                     2023-05-16 21:03:47,632 - INFO - utils.logging_stream_handler:77 - agent2, busy = 14970.0 second; odometer = 4599 meter.
+                     2023-05-16 21:03:47,632 - INFO - utils.logging_stream_handler:77 - agent3, busy = 14872.0 second; odometer = 4618 meter.
+                     2023-05-16 21:03:47,632 - INFO - utils.logging_stream_handler:77 - agent4, busy = 15300.0 second; odometer = 4846 meter.
+           
+     2nd round: 2023-05-16 21:06:17,066 - INFO - utils.logging_stream_handler:77 - agent0, busy = 29344.0 second; odometer = 9132 meter. 
+                    2023-05-16 21:06:17,066 - INFO - utils.logging_stream_handler:77 - agent1, busy = 29514.0 second; odometer = 8854 meter.
+                    2023-05-16 21:06:17,066 - INFO - utils.logging_stream_handler:77 - agent2, busy = 30520.0 second; odometer = 9536 meter.
+                    2023-05-16 21:06:17,066 - INFO - utils.logging_stream_handler:77 - agent3, busy = 29862.0 second; odometer = 9215 meter.
+                    2023-05-16 21:06:17,066 - INFO - utils.logging_stream_handler:77 - agent4, busy = 30664.0 second; odometer = 9703 meter.
+        
+     3rd round: 2023-05-16 21:09:43,863 - INFO - utils.logging_stream_handler:77 - agent0, busy = 44438.0 second; odometer = 13737 meter.
+                    2023-05-16 21:09:43,863 - INFO - utils.logging_stream_handler:77 - agent1, busy = 44080.0 second; odometer = 13399 meter.
+                    2023-05-16 21:09:43,863 - INFO - utils.logging_stream_handler:77 - agent2, busy = 45300.0 second; odometer = 14049 meter.
+                    2023-05-16 21:09:43,863 - INFO - utils.logging_stream_handler:77 - agent3, busy = 45382.0 second; odometer = 14151 meter.
+                    2023-05-16 21:09:43,863 - INFO - utils.logging_stream_handler:77 - agent4, busy = 45668.0 second; odometer = 14330 meter.   
+           
+     4th round: 2023-05-16 21:11:15,662 - INFO - utils.logging_stream_handler:77 - agent0, busy = 60252.0 second; odometer = 18872 meter.
+                    2023-05-16 21:11:15,662 - INFO - utils.logging_stream_handler:77 - agent1, busy = 58508.0 second; odometer = 17724 meter.
+                    2023-05-16 21:11:15,662 - INFO - utils.logging_stream_handler:77 - agent2, busy = 60472.0 second; odometer = 18750 meter.
+                    2023-05-16 21:11:15,662 - INFO - utils.logging_stream_handler:77 - agent3, busy = 59770.0 second; odometer = 18514 meter.
+                    2023-05-16 21:11:15,662 - INFO - utils.logging_stream_handler:77 - agent4, busy = 60834.0 second; odometer = 19034 meter.
+          
+     5th round: 2023-05-16 21:12:17,360 - INFO - utils.logging_stream_handler:77 - agent0, busy = 75718.0 second; odometer = 23736 meter.
+                    2023-05-16 21:12:17,360 - INFO - utils.logging_stream_handler:77 - agent3, busy = 75186.0 second; odometer = 23360 meter.
+                    2023-05-16 21:12:17,360 - INFO - utils.logging_stream_handler:77 - agent1, busy = 73042.0 second; odometer = 22097 meter.
+                    2023-05-16 21:12:17,360 - INFO - utils.logging_stream_handler:77 - agent4, busy = 75432.0 second; odometer = 23484 meter.
+                    2023-05-16 21:12:17,360 - INFO - utils.logging_stream_handler:77 - agent2, busy = 75410.0 second; odometer = 23437 meter.
+     Solved
+  6) 加入了GA，但是对于session部分的tasklist存在一些问题，因为运行到后面会出现agent空转的情况，另外未想清楚如何解决去货品取到最后未达到capacity但是也需要把这一部分货品进行搬运的问题。 todo
