@@ -32,3 +32,13 @@ objective function:
 1. 为什么实验结果在加入tasklist之后翻了5倍？ (整个tasklist被进行了5次): done total_number_or_session被定义成5，一次session表示整个仓库货物全部被取出来的一次结果，所以一共进行了5次，最后的结果也翻倍成5
 2. agent put items into the cart, up to capacity, and then move.  one agent can pick up multiple items. Done
 3. Strategy change. todo not home -> home, but home-> item1 location -> item2 location -> item3 location -> home.  Done
+
+# 20230516
+- GA Algorithm: https://www.geeksforgeeks.org/genetic-algorithms/
+  1) Randomly initialize populations p
+  2) Determine fitness of population
+  3) Until convergence repeat:
+        a) Select parents from population
+        b) Crossover and generate new population
+        c) Perform mutation on new population
+        d) Calculate fitness for new population
