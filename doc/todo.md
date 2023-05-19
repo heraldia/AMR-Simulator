@@ -54,3 +54,37 @@ Done
 # 2023_0515_1906
 Make a sequence of tasklist, in due time, or in weight, or in distance. 
 Add GA Algorithm + PSO Algorithm +principle
+
+# 2023_0519_1600
+# queue is a taskList
+queue = [item0, item1, item2]
+agentList = [agent0, agent1, ... , agent4]
+for agent in agentList:
+    agent.state = 'idle'
+
+while queue:
+
+    # assign this item to one agent
+    #for _ in range(len(agentManager.idleList)):
+    while agentManager.idleList:
+        if not queue:
+            return
+
+        item = queue.pop(0)
+        agent = agentManager.idleList.pop(0)
+        def cell_process(agent, item):
+            agent.setState('busy')
+            agentTakeItem(item)
+            item.setState('taken')
+            agent.finishTask(item)
+            item.setState('completed')
+            agent.setState('idle')
+            agentManager.idleList.append(agent)
+        cell_process(agent, item)
+
+
+# 2023_05_19_18:22
+1. when queue is an item, how to achieve? 
+2. achieve multithreading. At now, just repeating the same task for each agent. 
+3. GA +principle, parameters etc. 
+4. statistics for each session. 

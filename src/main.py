@@ -64,17 +64,17 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
         taskAssignment_object = TaskAssignment(taskList.get_task_list())
         taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
         _list = taskAssignment_object.getItemList()
-        # print(50, sys._getframe().f_lineno, f'| 1 = {1}', _list) # 2023_0509_2335
         session.set_taskList(_list)
-        #print(51, sys._getframe().f_lineno, f'| 1 = {itemManager.itemList}', itemManager.itemList ) # 2023_0509_2327
+        session.process_for_agent(agentManager.agentList)
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=NUMBER_OF_AGENT) as executor:
-            results = executor.map(session.process_for_agent, session.agentManager.agentList) #调用session的process_for_agent函数
-
-            for result in results:
-                print(result)
-                # statistics todo
+        # with concurrent.futures.ThreadPoolExecutor(max_workers=NUMBER_OF_AGENT) as executor:
+        #     results = executor.map(session.process_for_agent, session.agentManager.agentList) #调用session的process_for_agent函数
+        #
+        #     for result in results:
+        #         print(result)
+        #         # statistics todo
         c += 1
+
 
 # result = session.process_for_agent() #调用session的process_for_agent函数
 

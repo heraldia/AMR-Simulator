@@ -75,3 +75,8 @@ objective function:
                     2023-05-16 21:12:17,360 - INFO - utils.logging_stream_handler:77 - agent2, busy = 75410.0 second; odometer = 23437 meter.
      Solved
   6) 加入了GA，但是对于session部分的tasklist存在一些问题，因为运行到后面会出现agent空转的情况，另外未想清楚如何解决去货品取到最后未达到capacity但是也需要把这一部分货品进行搬运的问题。 todo
+
+# 20230519
+工作总结：
+1. 解决了AGENT空转问题，agent的计量表不能清零问题，以及tasklist不能正常导入问题。
+2. 有待验证方法是否正确
