@@ -80,3 +80,7 @@ objective function:
 工作总结：
 1. 解决了AGENT空转问题，agent的计量表不能清零问题，以及tasklist不能正常导入问题。
 2. 有待验证方法是否正确
+
+# 20230523
+工作总结： 
+achieve multithreading. 

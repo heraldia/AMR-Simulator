@@ -10,8 +10,8 @@ from model.TaskList import TaskList   #
 from model.ChangerStation import ChangerStation     #定义充电点
 from model.Session import Session    #定义一次从头到尾的实验
 from utils.Constants import NUMBER_OF_AGENT    #定义一些永远不变的函数
-import concurrent.futures
-import pickle
+from model.GA import GA
+import threading
 import sys
 
 
@@ -45,9 +45,6 @@ session = Session(map, agentManager)
 # ## 设置地图进去
 session.set_map(map)
 
-#print(35, sys._getframe().f_lineno, f'| 1 = {taskList}', ) # 2023_0509_2323
-#print(taskList.get_task_list())
-
 # todo base_on_principle()
 """
 for principle_i in principle_list:
@@ -65,11 +62,20 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
         taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
         _list = taskAssignment_object.getItemList()
         session.set_taskList(_list)
-        session.process_for_agent(agentManager.agentList)
+        for agent in session.agentManager.agentList:
+            agent.state = "Idle"
+            agent.odometer = 0
+            agent.busy_time_so_far = 0
+            agent.battery_threshold = 100
+        # session.process_for_agent(agentManager.agentList)
 
-        # with concurrent.futures.ThreadPoolExecutor(max_workers=NUMBER_OF_AGENT) as executor:
-        #     results = executor.map(session.process_for_agent, session.agentManager.agentList) #调用session的process_for_agent函数
-        #
+
+        threads = []
+        for i in range (NUMBER_OF_AGENT):
+            t = threading.Thread(target=session.process_for_agent)
+            threads.append(t)
+            t.start()
+
         #     for result in results:
         #         print(result)
         #         # statistics todo
@@ -88,11 +94,6 @@ cur_task_accomplish_time = task.compute_a_trip_time()
 logger.info(f'This task was accomplished within {cur_task_accomplish_time} s')
 logger.info(f'This agent worked {agent.busy_time_so_far} s')
 """
-
-
-# with open('shelfinfo.pickle','rb') as file:
-#    a_dict1=pickle.load(file)
-# print(a_dict1)
 
 
 

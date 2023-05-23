@@ -79,6 +79,8 @@ class GA(object):
         """
         return self.agentManager.calculate_total_busy_time_and_distance(total_list)
 
+
+
     def run(self, generations):
         total_list = [self._list]
         for _ in range(generations):

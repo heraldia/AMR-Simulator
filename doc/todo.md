@@ -84,7 +84,6 @@ while queue:
 
 
 # 2023_05_19_18:22
-1. when queue is an item, how to achieve? 
-2. achieve multithreading. At now, just repeating the same task for each agent. 
-3. GA +principle, parameters etc. 
-4. statistics for each session. 
+1. when queue is an item, how to achieve?
+2. GA Workflow, GA +principle, parameters etc. 
+3. statistics for each session.
