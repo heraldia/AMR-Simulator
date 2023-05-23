@@ -79,3 +79,20 @@ class AgentManager(metaclass=Singleton):
     def has_pending_items(self):
         return bool(self.agent_state_dict['OnDuty']) or bool(self.agent_state_dict['Pausing']) or bool(
             self.agent_state_dict['carrying'])
+
+    def calculate_total_busy_time_and_distance(self, total_list):
+        results = []
+        for _list in total_list:
+            total_busy_time = 0
+            total_odometer = 0
+            for agent in self.agentList:
+                total_busy_time += agent.busy_time_so_far
+                total_odometer += agent.odometer
+            results.append((total_busy_time+total_odometer))
+        return results
+
+    def reset_agents(self):
+        for agent in self.agentList:
+            agent.busy_time_so_far = 0
+            agent.odometer = 0
+            agent.current_battery = agent.max_battery

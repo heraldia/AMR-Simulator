@@ -1,6 +1,8 @@
+from .AgentManager import AgentManager
 from .GA import GA
 import sys
 
+agentManager = AgentManager()
 class TaskAssignment(object):
 
     """
@@ -23,8 +25,8 @@ class TaskAssignment(object):
         if not algorithmName:
             pass
         if algorithmName == 'GA':
-            ga_object = GA(self.itemList)
-            self.itemList = ga_object.generate(self.itemList)
+            ga_object = GA(agentManager, self.itemList)
+            self.itemList = ga_object.run(generations=100)
             # print(17, sys._getframe().f_lineno, f'| 1 = {self.itemList}', ) # 2023_0509_2331
             return 
         elif algorithmName == 'PSO':
