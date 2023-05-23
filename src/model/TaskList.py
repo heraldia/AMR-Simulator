@@ -9,6 +9,6 @@ class TaskList(metaclass=Singleton):
         self._list.append(item)
 
     def get_task_list(self):
-        return self._list # todo to delete chunk
+        return self._list  # todo to delete chunk
         # return self._list
         
