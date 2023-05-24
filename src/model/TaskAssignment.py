@@ -27,8 +27,8 @@ class TaskAssignment(object):
         if algorithmName == 'GA':
             ga_object = GA(agentManager, self.itemList)
             self.itemList = ga_object.run(generations=100)
-            # print(17, sys._getframe().f_lineno, f'| 1 = {self.itemList}', ) # 2023_0509_2331
-            return 
+            total_itemList = ga_object.total_list
+            return total_itemList
         elif algorithmName == 'PSO':
             return 
 

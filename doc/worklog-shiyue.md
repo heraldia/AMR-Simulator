@@ -84,3 +84,11 @@ objective function:
 # 20230523
 工作总结： 
 achieve multithreading. 
+
+# 20230524
+工作总结：
+1. 解决了GA生成列表无法导入的问题。
+2. GA的selection部分应该如何设计，待解决，轮盘选择如何设计？
+3. 未加入principle，该如何设计？
+4. 对于每一个GA生成的List最后得到的数据，为传入到selection中，该如何传入？
+5. principle应该如何加？

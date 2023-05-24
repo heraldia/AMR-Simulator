@@ -15,6 +15,7 @@ class GA(object):
         self.mutation_rate = mutation_rate
         self.crossover_rate = crossover_rate
         self.agentManager = agentManager
+        self.total_list = []
 
     def generate(self, originalItemList):
         self._list = originalItemList
@@ -81,8 +82,8 @@ class GA(object):
 
 
 
-    def run(self, generations):
-        total_list = [self._list]
+    def run(self, generations): #generate a set of list for calcultating fitness
+        self.total_list = [self._list]
         for _ in range(generations):
             parent1 = self._list.copy()
             parent2 = self._list.copy()
@@ -91,6 +92,6 @@ class GA(object):
             child1, child2 = self.crossoever(parent1, parent2)
             child1 = self.mutate(child1)
             child2 = self.mutate(child2)
-            total_list.extend([parent1, parent2, child1, child2])
-            total_list = self.selection(total_list)
-        return self._list
+            self.total_list.extend([parent1, parent2, child1, child2])
+            # total_list = self.selection(total_list)
+        # return total_list

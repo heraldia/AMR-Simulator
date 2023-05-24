@@ -1,5 +1,5 @@
 from model.Map import Map   #生成地图
-from utils.utils import print2d_with_index   #visualize map, line 13调出map1和map2
+from utils.utils import print2d_with_index   #visualize map
 from utils.logging_stream_handler import logger    #logger函数监控整个项目
 from model.Agent import Agent   #定义搬运机器人
 from model.AgentManager import AgentManager   #定义机器人管理单位
@@ -59,30 +59,59 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
     while c < total_number_of_session:
         # 2023_0509_2223 GA generates this taskList
         taskAssignment_object = TaskAssignment(taskList.get_task_list())
-        taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
-        _list = taskAssignment_object.getItemList()
-        session.set_taskList(_list)
-        for agent in session.agentManager.agentList:
-            agent.state = "Idle"
-            agent.odometer = 0
-            agent.busy_time_so_far = 0
-            agent.battery_threshold = 100
-        # session.process_for_agent(agentManager.agentList)
+        total_itemList = taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
 
 
-        threads = []
-        for i in range (NUMBER_OF_AGENT):
-            t = threading.Thread(target=session.process_for_agent)
-            threads.append(t)
-            t.start()
+        if c == 0 or not total_itemList:
+            _list = taskAssignment_object.getItemList()
+            session.set_taskList(_list)
+            # session.process_for_agent(agentManager.agentList)
+            for agent in session.agentManager.agentList:
+                agent.state = "Idle"
+                agent.odometer = 0
+                agent.busy_time_so_far = 0
+                agent.current_battery= 100
 
-        #     for result in results:
-        #         print(result)
-        #         # statistics todo
-        c += 1
+            threads = []
+            for i in range(NUMBER_OF_AGENT):
+                t = threading.Thread(target=session.process_for_agent)
+                threads.append(t)
+                t.start()
+
+            for thread in threads:
+                thread.join()
+
+            #     for result in results:
+            #         print(result)
+            #         # statistics todo
+
+            c += 1
 
 
-# result = session.process_for_agent() #调用session的process_for_agent函数
+        else:
+            for _list in total_itemList:
+                taskAssignment_object_new= TaskAssignment(_list)
+                new_list = taskAssignment_object_new.getItemList()
+                session.set_taskList(new_list)
+
+                for agent in session.agentManager.agentList:
+                    agent.state = "Idle"
+                    agent.odometer = 0
+                    agent.busy_time_so_far = 0
+                    agent.current_battery =0
+
+                threads = []
+                for i in range(NUMBER_OF_AGENT):
+                # session.process_for_agent(agentManager.agentList)
+                    t = threading.Thread(target=session.process_for_agent)
+                    threads.append(t)
+                    t.start()
+
+                for thread in threads:
+                    thread.join()
+
+                # statistics todo
+            c += 1
 
 
 # one agent in one session
