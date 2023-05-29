@@ -10,6 +10,7 @@ from utils.logging_stream_handler import logger
 class AgentManager(metaclass=Singleton):
     def __init__(self):
         self.agentList = []
+        self.fitness_results = []
         self.agent_state_dict = {
                 'Idle'     : [],   #闲置
                 'OnDuty'   : [],   #任务中
@@ -72,9 +73,19 @@ class AgentManager(metaclass=Singleton):
         agent.update_state(cur_state)
 
 
-    def analyze_agents(self):
+    def analyze_agents(self, record_fitness=True):
+        global agent
+        total_busy_time = 0
+        total_odometer = 0
         for i, agent in enumerate(self.agentList):
             logger.info(f"agent{i}, busy = {agent.busy_time_so_far} second; odometer = {agent.odometer} meter.")
+            total_busy_time += agent.busy_time_so_far
+            total_odometer += agent.odometer
+        fitness_number = total_busy_time + total_odometer
+        if record_fitness:
+            self.fitness_results.append(fitness_number)
+        logger.info("fitness number is {}".format(self.fitness_results))
+        return fitness_number
 
     def has_pending_items(self):
         return bool(self.agent_state_dict['OnDuty']) or bool(self.agent_state_dict['Pausing']) or bool(

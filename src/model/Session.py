@@ -48,6 +48,7 @@ class Session:
             while self.agentManager.agent_state_dict["Idle"]:
                 _agent = self.agentManager.agent_state_dict["Idle"][0]
                 if not queue:
+
                     return
                 for _item in queue:
                     if _agent.add_item_to_agent(_item):
@@ -72,7 +73,7 @@ class Session:
 
                 sub_process_for_agent(_agent, item_list)
                 item_list = []
-                self.agentManager.analyze_agents()
+
 
 
 

@@ -52,17 +52,20 @@ for principle_i in principle_list:
     for todayItemList in thisWeekItemList:
         ...
 """
-taskAssignment_algo_list = ['GA', 'PSO']
+ga_object = None
+# taskAssignment_algo_list = ['GA', 'PSO']
+taskAssignment_algo_list = ['GA']
 for taskAssignment_algo_name in taskAssignment_algo_list:
     c = 0 # firstTime
-    total_number_of_session = 5   #定义一共有几次实验，每次session的tasklist都会进行更新迭代 todo
+    total_number_of_session = 100   #定义一共有几次实验，每次session的tasklist都会进行更新迭代 todo
     while c < total_number_of_session:
         # 2023_0509_2223 GA generates this taskList
-        taskAssignment_object = TaskAssignment(taskList.get_task_list())
+        taskAssignment_object = TaskAssignment(taskList.get_task_list(), ga_object=ga_object) #todo,在c=2及以后，继承的tasklist是一个total_tasklist的集合，而不再是一个列表了
         total_itemList = taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
 
 
         if c == 0 or not total_itemList:
+            ga_object = taskAssignment_object.ga_object
             _list = taskAssignment_object.getItemList()
             session.set_taskList(_list)
             # session.process_for_agent(agentManager.agentList)
@@ -81,6 +84,12 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
             for thread in threads:
                 thread.join()
 
+            if c ==0:
+                agentManager.analyze_agents(record_fitness=False)
+            else:
+                agentManager.analyze_agents(record_fitness=True)
+
+
             #     for result in results:
             #         print(result)
             #         # statistics todo
@@ -89,6 +98,8 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
 
 
         else:
+
+            agentManager.fitness_results = []
             for _list in total_itemList:
                 taskAssignment_object_new= TaskAssignment(_list)
                 new_list = taskAssignment_object_new.getItemList()
@@ -102,7 +113,6 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
 
                 threads = []
                 for i in range(NUMBER_OF_AGENT):
-                # session.process_for_agent(agentManager.agentList)
                     t = threading.Thread(target=session.process_for_agent)
                     threads.append(t)
                     t.start()
@@ -110,6 +120,7 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
                 for thread in threads:
                     thread.join()
 
+                agentManager.analyze_agents()
                 # statistics todo
             c += 1
 
