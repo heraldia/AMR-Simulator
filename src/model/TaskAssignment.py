@@ -33,6 +33,5 @@ class TaskAssignment(object):
             return 
 
     def getItemList(self):
-        # print(25, sys._getframe().f_lineno, f'| 1 = {self.itemList}', ) # 2023_0509_23322
         return self.itemList
         

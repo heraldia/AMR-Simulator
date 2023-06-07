@@ -1,11 +1,17 @@
-from model.Map import Map
+from model.ChangerStation import ChangerStation
+from utils.logging_stream_handler import logger
+
 from utils.Singleton import Singleton
+from model.Map import Map
+from math import sqrt
+import pandas as pd
+import os
 import sys
 import time
 
-from math import sqrt
-from model.ChangerStation import ChangerStation
-from utils.logging_stream_handler import logger
+
+
+
 
 class AgentManager(metaclass=Singleton):
     def __init__(self):
@@ -17,6 +23,9 @@ class AgentManager(metaclass=Singleton):
                 'Pausing'  : [],
                 'carrying' : [],
                 }
+        self.experiment_counter = 0 # 实验计数器
+        self.df = pd.DataFrame(columns=['Experiment', 'Agent', 'Busy Time', 'Odometer', "Fitness Number"]) # 创建一个空的DataFrame
+
 
     #遍历所有机器人的电量
     def charge(self, agent, map):
@@ -75,35 +84,26 @@ class AgentManager(metaclass=Singleton):
 
     def analyze_agents(self, record_fitness=True):
         global agent
+        self.experiment_counter += 1 #Increase the experiment counter at the beginning of each experiment
         total_busy_time = 0
         total_odometer = 0
         for i, agent in enumerate(self.agentList):
             logger.info(f"agent{i}, busy = {agent.busy_time_so_far} second; odometer = {agent.odometer} meter.")
             total_busy_time += agent.busy_time_so_far
             total_odometer += agent.odometer
+            self.df = self.df.append(
+                {'Experiment': self.experiment_counter, 'Agent': f"agent{i}", 'Busy Time': agent.busy_time_so_far,
+                 'Odometer': agent.odometer}, ignore_index=True)
         fitness_number = total_busy_time + total_odometer
+
+
         if record_fitness:
             self.fitness_results.append(fitness_number)
         logger.info("fitness number is {}".format(self.fitness_results))
+        self.df = self.df.append({"Experiment": self.experiment_counter, "Agent": "Total", "Busy Time": total_busy_time,
+                                  "Odometer": total_odometer, "Fitness Number": fitness_number}, ignore_index=True)
+        # Save to Excel after each experiment
         return fitness_number
 
-    def has_pending_items(self):
-        return bool(self.agent_state_dict['OnDuty']) or bool(self.agent_state_dict['Pausing']) or bool(
-            self.agent_state_dict['carrying'])
-
-    def calculate_total_busy_time_and_distance(self, total_list):
-        results = []
-        for _list in total_list:
-            total_busy_time = 0
-            total_odometer = 0
-            for agent in self.agentList:
-                total_busy_time += agent.busy_time_so_far
-                total_odometer += agent.odometer
-            results.append((total_busy_time+total_odometer))
-        return results
-
-    def reset_agents(self):
-        for agent in self.agentList:
-            agent.busy_time_so_far = 0
-            agent.odometer = 0
-            agent.current_battery = agent.max_battery
+    def write_to_excel(self):
+            self.df.to_excel("Agents_Statistics.xlsx", index=False)

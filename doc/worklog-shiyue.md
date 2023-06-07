@@ -88,7 +88,29 @@ achieve multithreading.
 # 20230524
 工作总结：
 1. 解决了GA生成列表无法导入的问题。
-2. GA的selection部分应该如何设计，待解决，轮盘选择如何设计？
+2. GA的selection部分应该如何设计，待解决，轮盘选择如何设计？ 
 3. 未加入principle，该如何设计？
 4. 对于每一个GA生成的List最后得到的数据，为传入到selection中，该如何传入？
-   5. principle应该如何加？                                                                                   
+5. principle应该如何加？                     
+
+# 20230605
+1. Short term electric load forecasting model and its verification for process industrial enterprises based on hybrid GA-PSO-BPNN algorithm—A case study of papermaking process： https://www.sciencedirect.com/science/article/pii/S0360544218325829?casa_token=AT5Bj6grOasAAAAA:DAApMuI-6pduMnTLYbc6H_p_zY23CLGiZigxJhEEwhaL4i71fSPQQmm5ykK7cJwhucoCuva8TVU#sec2
+    
+2. Real-Time Order Acceptance and Scheduling Problems in a Flow Shop Environment Using Hybrid GA-PSO Algorithm： https://ieeexplore.ieee.org/abstract/document/8798615
+    Key points:
+        1. PFSP: Permutation Flow Shop Scheduling Problem, 一种排列流水车间调度问题. First, they must accept or reject the order while considering available machine capacity and the customer-specified due date. Second, the jobs involved in each new order must be scheduled with the existing accepted orders, which are either already being processed by the machines or are waiting in the processing queue.
+        2. When an order is registered in the production system, a hypothetical schedule of that order is generated, since there is a likelihood that it cannot be processed immediately due to machine availability constraints. However, if the first machine is free when the job arrives, the job can be immediately processed into the first machine without violating the machine availability constraints, and without interrupting the other accepted orders which are already being processed by other machines. If the first machine or the following machines are not immediately free, then the orders need to wait in a queue for processing until the next machine is free. Scheduling the jobs of each order while considering the current state of availability at that time may reduce the completion time of each order and therefore increase the possibility of its acceptance. Therefore, on basis of that hypothetical schedule, an order acceptance or rejection decision is made on basis of local view of whether all jobs of that order can be completed within its due date or not. This approach is called real-time strategy for multiple order PFSPs.
+        3. a non-random initialization is proposed where the first member/individual of the initial generation starts with an NEH heuristic 
+        4.  A tournament selection technique
+        5. The performance of the proposed approaches is sensitive to their parameter settings. In this paper, parameters are calibrated based on Taguchi’s method of experiment design to achieve good solutions within reasonable computational times. " V. N. Nair, B. Abraham, J. MacKay, G. Box, R. N. Kacker, T. J. Lorenzen, et al., "Taguchi’s parameter design: A panel discussion", Technometrics, vol. 34, no. 2, pp. 127-161, 1992."
+        6. The proposed approaches are tested on a set of benchmark problems and compared with the existing approaches. The results show that the proposed approaches are able to find good solutions within reasonable computational times.
+            "An average relative performance of deviation (ARPD)"，敏感性分析。
+        7. 判断标准：运用不同的算法被拒绝和接受的订单数目，更多的接受订单数目，说明算法更好。
+3. A novel particle swarm optimization-based grey model for the prediction of warehouse performance：https://academic.oup.com/jcde/article/8/2/705/6149254
+
+
+# 20230607
+1. 比较算法的最后一代的最优解的质量，或者比较收敛速度（达到同样质量的解所需要的代数）。运行时间的关注？
+2. 如何构建原始GA和现在改进的GA进行比较？因为GA采用的fitness值是来自于simulator的。
+3. 用原始GA定义一个适应度函数：例如：f(tasklist) = w1 * 总行驶路程 + w2 * 总运行时间。这里的w1和w2是权重，可以根据你的具体需求来设定。这个函数的值越小，表示tasklist的质量越高。
+4. Improved Genetic Algorithm Based Express Delivery Route Optimization Model： https://ieeexplore.ieee.org/abstract/document/9182464?casa_token=FQ7GThEdiCIAAAAA:Y09LqOYaD5sM_s7sZ5OGvm_pWE3pQd8Cq2IT1Ow31Ue278KpkPzFi3a1U6JV5cobfxtjdh6wBoU

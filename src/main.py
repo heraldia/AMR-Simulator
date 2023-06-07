@@ -56,11 +56,11 @@ ga_object = None
 # taskAssignment_algo_list = ['GA', 'PSO']
 taskAssignment_algo_list = ['GA']
 for taskAssignment_algo_name in taskAssignment_algo_list:
-    c = 0 # firstTime
-    total_number_of_session = 100   #定义一共有几次实验，每次session的tasklist都会进行更新迭代 todo
+    c = 0 #initial generation
+    total_number_of_session = 10   #定义一共100次GA的迭代，每次session的tasklist都会进行更新迭代
     while c < total_number_of_session:
         # 2023_0509_2223 GA generates this taskList
-        taskAssignment_object = TaskAssignment(taskList.get_task_list(), ga_object=ga_object) #todo,在c=2及以后，继承的tasklist是一个total_tasklist的集合，而不再是一个列表了
+        taskAssignment_object = TaskAssignment(taskList.get_task_list(), ga_object=ga_object)
         total_itemList = taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
 
 
@@ -73,7 +73,7 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
                 agent.state = "Idle"
                 agent.odometer = 0
                 agent.busy_time_so_far = 0
-                agent.current_battery= 100
+                agent.current_battery = 100
 
             threads = []
             for i in range(NUMBER_OF_AGENT):
@@ -84,10 +84,8 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
             for thread in threads:
                 thread.join()
 
-            if c ==0:
-                agentManager.analyze_agents(record_fitness=False)
-            else:
-                agentManager.analyze_agents(record_fitness=True)
+            agentManager.analyze_agents(record_fitness=False if c == 0 else True)
+            agentManager.write_to_excel()  # Write to excel after each experiment
 
 
             #     for result in results:
@@ -121,7 +119,8 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
                     thread.join()
 
                 agentManager.analyze_agents()
-                # statistics todo
+                agentManager.write_to_excel()  # Write to excel after each experiment
+                # statistics for tasklist in each experiment. todo
             c += 1
 
 
