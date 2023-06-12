@@ -72,7 +72,11 @@ class Ant():
             dis_1.append(((self.destination[0]-i[0])**2+(self.destination[1]-i[1])**2)**0.5)
         #Step 3.1:倒数反转
         for j in range(len(dis_1)):
-            dis_1[j] = 1/dis_1[j]
+            if dis_1[j] != 0:
+                dis_1[j] = 1 / dis_1[j]
+            else:
+                # 处理除数为零的情况，例如给dis_1[j]赋一个较大的值或者跳过该次循环
+                dis_1[j] = 9999999  # 假设一个较大的值作为替代, 意味着它们是同一个节点或者非常近的系欸但，无法确定一个有效的距离。
 
         #Step 4:计算节点被选中的概率
         prob = []

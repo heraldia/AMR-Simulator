@@ -26,7 +26,7 @@ class TaskAssignment(object):
         if not algorithmName:
             pass
         if algorithmName == 'GA':
-            self.itemList = self.ga_object.run(generations=100)
+            self.itemList = self.ga_object.run()
             total_itemList = self.ga_object.processing_total_list
             return total_itemList
         elif algorithmName == 'PSO':

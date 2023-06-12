@@ -82,7 +82,7 @@ class AgentManager(metaclass=Singleton):
         agent.update_state(cur_state)
 
 
-    def analyze_agents(self, record_fitness=True):
+    def analyze_agents(self, task_list, record_fitness=True, record_data = True):
         global agent
         self.experiment_counter += 1 #Increase the experiment counter at the beginning of each experiment
         total_busy_time = 0
@@ -91,18 +91,23 @@ class AgentManager(metaclass=Singleton):
             logger.info(f"agent{i}, busy = {agent.busy_time_so_far} second; odometer = {agent.odometer} meter.")
             total_busy_time += agent.busy_time_so_far
             total_odometer += agent.odometer
-            self.df = self.df.append(
-                {'Experiment': self.experiment_counter, 'Agent': f"agent{i}", 'Busy Time': agent.busy_time_so_far,
-                 'Odometer': agent.odometer}, ignore_index=True)
+            temp_df = pd.DataFrame(
+                [{'Experiment': self.experiment_counter, 'Agent': f"agent{i}", 'Busy Time': agent.busy_time_so_far,
+                  'Odometer': agent.odometer}], columns=['Experiment', 'Agent', 'Busy Time', 'Odometer'])
+            self.df = pd.concat([self.df, temp_df], ignore_index=True)
+
         fitness_number = total_busy_time + total_odometer
 
 
         if record_fitness:
             self.fitness_results.append(fitness_number)
         logger.info("fitness number is {}".format(self.fitness_results))
-        self.df = self.df.append({"Experiment": self.experiment_counter, "Agent": "Total", "Busy Time": total_busy_time,
-                                  "Odometer": total_odometer, "Fitness Number": fitness_number}, ignore_index=True)
+        temp_df = pd.DataFrame([{'Experiment': self.experiment_counter, 'Agent': 'Total', 'Busy Time': total_busy_time,
+                                 'Odometer': total_odometer, 'Fitness Number': fitness_number}],
+                               columns=['Experiment', 'Agent', 'Busy Time', 'Odometer', 'Fitness Number'])
+        self.df = pd.concat([self.df, temp_df], ignore_index=True)
         # Save to Excel after each experiment
+
         return fitness_number
 
     def write_to_excel(self):

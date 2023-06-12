@@ -11,6 +11,6 @@ class TaskList(metaclass=Singleton):
 
     def get_task_list(self):
         self._list.sort(key=lambda item: item.priority, reverse=True) # sort by priority for the tasklist
-        return self._list[:10] # todo to delete chunk
+        return self._list # todo to delete chunk
         # return self._list
         

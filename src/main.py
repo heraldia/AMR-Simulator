@@ -15,7 +15,7 @@ import threading
 import sys
 
 
-map = Map("data/scene.dat")
+map = Map("data/scene1.dat")
 
 logger.debug (map.get_map()[1][2])
 
@@ -57,7 +57,7 @@ ga_object = None
 taskAssignment_algo_list = ['GA']
 for taskAssignment_algo_name in taskAssignment_algo_list:
     c = 0 #initial generation
-    total_number_of_session = 10   #定义一共100次GA的迭代，每次session的tasklist都会进行更新迭代
+    total_number_of_session = 150   #定义一共100次GA的迭代，每次session的tasklist都会进行更新迭代
     while c < total_number_of_session:
         # 2023_0509_2223 GA generates this taskList
         taskAssignment_object = TaskAssignment(taskList.get_task_list(), ga_object=ga_object)
@@ -84,7 +84,7 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
             for thread in threads:
                 thread.join()
 
-            agentManager.analyze_agents(record_fitness=False if c == 0 else True)
+            agentManager.analyze_agents(_list, record_fitness=False if c == 0 else True)
             agentManager.write_to_excel()  # Write to excel after each experiment
 
 
@@ -118,7 +118,7 @@ for taskAssignment_algo_name in taskAssignment_algo_list:
                 for thread in threads:
                     thread.join()
 
-                agentManager.analyze_agents()
+                agentManager.analyze_agents(_list)
                 agentManager.write_to_excel()  # Write to excel after each experiment
                 # statistics for tasklist in each experiment. todo
             c += 1
