@@ -114,3 +114,4 @@ achieve multithreading.
 2. 如何构建原始GA和现在改进的GA进行比较？因为GA采用的fitness值是来自于simulator的。
 3. 用原始GA定义一个适应度函数：例如：f(tasklist) = w1 * 总行驶路程 + w2 * 总运行时间。这里的w1和w2是权重，可以根据你的具体需求来设定。这个函数的值越小，表示tasklist的质量越高。
 4. Improved Genetic Algorithm Based Express Delivery Route Optimization Model： https://ieeexplore.ieee.org/abstract/document/9182464?casa_token=FQ7GThEdiCIAAAAA:Y09LqOYaD5sM_s7sZ5OGvm_pWE3pQd8Cq2IT1Ow31Ue278KpkPzFi3a1U6JV5cobfxtjdh6wBoU
+5. Multi Target Task Distribution and Path Planning for Multi-Agents
