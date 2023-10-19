@@ -1,5 +1,5 @@
 from model.Map import Map   #生成地图
-from utils.utils import print2d_with_index   #visualize map, line 13调出map1和map2
+from utils.utils import print2d_with_index   #visualize map
 from utils.logging_stream_handler import logger    #logger函数监控整个项目
 from model.Agent import Agent   #定义搬运机器人
 from model.AgentManager import AgentManager   #定义机器人管理单位
@@ -10,12 +10,12 @@ from model.TaskList import TaskList   #
 from model.ChangerStation import ChangerStation     #定义充电点
 from model.Session import Session    #定义一次从头到尾的实验
 from utils.Constants import NUMBER_OF_AGENT    #定义一些永远不变的函数
-import concurrent.futures
-import pickle
+from model.GA import GA
+import threading
 import sys
 
 
-map = Map("data/scene.dat")
+map = Map("data/scene1.dat")
 
 logger.debug (map.get_map()[1][2])
 
@@ -45,9 +45,6 @@ session = Session(map, agentManager)
 # ## 设置地图进去
 session.set_map(map)
 
-#print(35, sys._getframe().f_lineno, f'| 1 = {taskList}', ) # 2023_0509_2323
-#print(taskList.get_task_list())
-
 # todo base_on_principle()
 """
 for principle_i in principle_list:
@@ -55,28 +52,76 @@ for principle_i in principle_list:
     for todayItemList in thisWeekItemList:
         ...
 """
-taskAssignment_algo_list = ['GA', 'PSO']
+ga_object = None
+# taskAssignment_algo_list = ['GA', 'PSO']
+taskAssignment_algo_list = ['GA']
 for taskAssignment_algo_name in taskAssignment_algo_list:
-    c = 0 # firstTime
-    total_number_of_session = 1   #定义一共有几次实验，每次session的tasklist都会进行更新迭代 todo
+    c = 0 #initial generation
+    total_number_of_session = 150   #定义一共100次GA的迭代，每次session的tasklist都会进行更新迭代
     while c < total_number_of_session:
         # 2023_0509_2223 GA generates this taskList
-        taskAssignment_object = TaskAssignment(taskList.get_task_list())
-        taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
-        _list = taskAssignment_object.getItemList()
-        # print(50, sys._getframe().f_lineno, f'| 1 = {1}', _list) # 2023_0509_2335
-        session.set_taskList(_list)
-        #print(51, sys._getframe().f_lineno, f'| 1 = {itemManager.itemList}', itemManager.itemList ) # 2023_0509_2327
+        taskAssignment_object = TaskAssignment(taskList.get_task_list(), ga_object=ga_object)
+        total_itemList = taskAssignment_object.itemListGeneratedByAlgorithm(taskAssignment_algo_name, notFirstTime=c)
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=NUMBER_OF_AGENT) as executor:
-            results = executor.map(session.process_for_agent, session.agentManager.agentList) #调用session的process_for_agent函数
 
-            for result in results:
-                print(result)
-                # statistics todo
-        c += 1
+        if c == 0 or not total_itemList:
+            ga_object = taskAssignment_object.ga_object
+            _list = taskAssignment_object.getItemList()
+            session.set_taskList(_list)
+            # session.process_for_agent(agentManager.agentList)
+            for agent in session.agentManager.agentList:
+                agent.state = "Idle"
+                agent.odometer = 0
+                agent.busy_time_so_far = 0
+                agent.current_battery = 100
 
-# result = session.process_for_agent() #调用session的process_for_agent函数
+            threads = []
+            for i in range(NUMBER_OF_AGENT):
+                t = threading.Thread(target=session.process_for_agent)
+                threads.append(t)
+                t.start()
+
+            for thread in threads:
+                thread.join()
+
+            agentManager.analyze_agents(_list, record_fitness=False if c == 0 else True)
+            agentManager.write_to_excel()  # Write to excel after each experiment
+
+
+            #     for result in results:
+            #         print(result)
+            #         # statistics todo
+
+            c += 1
+
+
+        else:
+
+            agentManager.fitness_results = []
+            for _list in total_itemList:
+                taskAssignment_object_new= TaskAssignment(_list)
+                new_list = taskAssignment_object_new.getItemList()
+                session.set_taskList(new_list)
+
+                for agent in session.agentManager.agentList:
+                    agent.state = "Idle"
+                    agent.odometer = 0
+                    agent.busy_time_so_far = 0
+                    agent.current_battery =0
+
+                threads = []
+                for i in range(NUMBER_OF_AGENT):
+                    t = threading.Thread(target=session.process_for_agent)
+                    threads.append(t)
+                    t.start()
+
+                for thread in threads:
+                    thread.join()
+
+                agentManager.analyze_agents(_list)
+                agentManager.write_to_excel()  # Write to excel after each experiment
+                # statistics for tasklist in each experiment. todo
+            c += 1
 
 
 # one agent in one session
@@ -88,11 +133,6 @@ cur_task_accomplish_time = task.compute_a_trip_time()
 logger.info(f'This task was accomplished within {cur_task_accomplish_time} s')
 logger.info(f'This agent worked {agent.busy_time_so_far} s')
 """
-
-
-# with open('shelfinfo.pickle','rb') as file:
-#    a_dict1=pickle.load(file)
-# print(a_dict1)
 
 
 

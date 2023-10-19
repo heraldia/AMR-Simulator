@@ -29,7 +29,7 @@ class Task:
     def pre_update_battery_threshold(self):
         total_distance = 0
         for item in self.item_list:
-            strategy = Strategy(self.agent, item, self.map, 'simple_hamming_distance')
+            strategy = Strategy(self.agent, item, self.map, 'a_star')
             item_distance = strategy.get_final_path_distance()
             total_distance += item_distance
             self.agent.location = item.location[:2]
@@ -58,7 +58,7 @@ class Task:
 
 
             # ## 运行精英蚁群算法
-            strategy = Strategy(self.agent, item, self.map, 'simple_hamming_distance')
+            strategy = Strategy(self.agent, item, self.map, 'a_star')
             item_distance = strategy.get_final_path_distance()
             total_distance += item_distance
             item_height = item.location[2] * Constants.SHELF_HEIGHT / Constants.SHELF_LAYER

@@ -1,21 +1,31 @@
-from model.Map import Map
+from model.ChangerStation import ChangerStation
+from utils.logging_stream_handler import logger
+
 from utils.Singleton import Singleton
+from model.Map import Map
+from math import sqrt
+import pandas as pd
+import os
 import sys
 import time
 
-from math import sqrt
-from model.ChangerStation import ChangerStation
-from utils.logging_stream_handler import logger
+
+
+
 
 class AgentManager(metaclass=Singleton):
     def __init__(self):
         self.agentList = []
+        self.fitness_results = []
         self.agent_state_dict = {
                 'Idle'     : [],   #闲置
                 'OnDuty'   : [],   #任务中
                 'Pausing'  : [],
                 'carrying' : [],
                 }
+        self.experiment_counter = 0 # 实验计数器
+        self.df = pd.DataFrame(columns=['Experiment', 'Agent', 'Busy Time', 'Odometer', "Fitness Number"]) # 创建一个空的DataFrame
+
 
     #遍历所有机器人的电量
     def charge(self, agent, map):
@@ -72,10 +82,33 @@ class AgentManager(metaclass=Singleton):
         agent.update_state(cur_state)
 
 
-    def analyze_agents(self):
+    def analyze_agents(self, task_list, record_fitness=True, record_data = True):
+        global agent
+        self.experiment_counter += 1 #Increase the experiment counter at the beginning of each experiment
+        total_busy_time = 0
+        total_odometer = 0
         for i, agent in enumerate(self.agentList):
             logger.info(f"agent{i}, busy = {agent.busy_time_so_far} second; odometer = {agent.odometer} meter.")
+            total_busy_time += agent.busy_time_so_far
+            total_odometer += agent.odometer
+            temp_df = pd.DataFrame(
+                [{'Experiment': self.experiment_counter, 'Agent': f"agent{i}", 'Busy Time': agent.busy_time_so_far,
+                  'Odometer': agent.odometer}], columns=['Experiment', 'Agent', 'Busy Time', 'Odometer'])
+            self.df = pd.concat([self.df, temp_df], ignore_index=True)
 
-    def has_pending_items(self):
-        return bool(self.agent_state_dict['OnDuty']) or bool(self.agent_state_dict['Pausing']) or bool(
-            self.agent_state_dict['carrying'])
+        fitness_number = total_busy_time + total_odometer
+
+
+        if record_fitness:
+            self.fitness_results.append(fitness_number)
+        logger.info("fitness number is {}".format(self.fitness_results))
+        temp_df = pd.DataFrame([{'Experiment': self.experiment_counter, 'Agent': 'Total', 'Busy Time': total_busy_time,
+                                 'Odometer': total_odometer, 'Fitness Number': fitness_number}],
+                               columns=['Experiment', 'Agent', 'Busy Time', 'Odometer', 'Fitness Number'])
+        self.df = pd.concat([self.df, temp_df], ignore_index=True)
+        # Save to Excel after each experiment
+
+        return fitness_number
+
+    def write_to_excel(self):
+            self.df.to_excel("Agents_Statistics.xlsx", index=False)

@@ -31,6 +31,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="shiyuehu &lt;shiyuehu828@gmail.com&gt;" />
         <option value="shiyue &lt;shiyuehu828@gmail.com&gt;" />
         <option value="Shiyue Hu &lt;75236407+rrrrrrrronan@users.noreply.github.com&gt;" />
         <option value="phil &lt;wlmqxx@gmail.com&gt;" />
@@ -38,7 +39,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="2023_06_12_localsearch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,34 +48,39 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2PoJIr8yBMQZzPGExqyuWi2uoJf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "One__Trip__Multi__Item__20230515",
-    "last_opened_file_path": "D:/AMR-Simulator",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;所有位置&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;2023__06__08&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/AMR-Simulator&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="AMR-Simulator" />
@@ -108,7 +114,42 @@
       <option name="presentableId" value="Default" />
       <updated>1684117423892</updated>
       <workItem from="1684117425368" duration="459000" />
-      <workItem from="1684117905289" duration="16128000" />
+      <workItem from="1684117905289" duration="19065000" />
+      <workItem from="1684146074615" duration="91000" />
+      <workItem from="1684160487137" duration="26000" />
+      <workItem from="1684200316267" duration="20177000" />
+      <workItem from="1684237449843" duration="4549000" />
+      <workItem from="1684480178259" duration="8721000" />
+      <workItem from="1684489088931" duration="81000" />
+      <workItem from="1684489176672" duration="3000" />
+      <workItem from="1684511465822" duration="597000" />
+      <workItem from="1684555335341" duration="935000" />
+      <workItem from="1684720554663" duration="10225000" />
+      <workItem from="1684748037574" duration="830000" />
+      <workItem from="1684806701199" duration="1176000" />
+      <workItem from="1684821187459" duration="10360000" />
+      <workItem from="1684843434992" duration="330000" />
+      <workItem from="1684908833568" duration="10807000" />
+      <workItem from="1684928990413" duration="4681000" />
+      <workItem from="1685079851475" duration="13480000" />
+      <workItem from="1685106215752" duration="2498000" />
+      <workItem from="1685153133620" duration="2111000" />
+      <workItem from="1685155311819" duration="474000" />
+      <workItem from="1685250048118" duration="10980000" />
+      <workItem from="1685357295290" duration="1383000" />
+      <workItem from="1685941896576" duration="28000" />
+      <workItem from="1685941932706" duration="2272000" />
+      <workItem from="1686014710284" duration="3576000" />
+      <workItem from="1686112700208" duration="11846000" />
+      <workItem from="1686140663662" duration="15000" />
+      <workItem from="1686198997184" duration="24301000" />
+      <workItem from="1686273876761" duration="13576000" />
+      <workItem from="1686486551737" duration="12660000" />
+      <workItem from="1686538904163" duration="9164000" />
+      <workItem from="1686623585239" duration="1750000" />
+      <workItem from="1686640854999" duration="17207000" />
+      <workItem from="1686718325540" duration="622000" />
+      <workItem from="1687162151427" duration="914000" />
     </task>
     <task id="LOCAL-00001" summary="Test for update">
       <created>1684117942213</created>
@@ -131,25 +172,136 @@
       <option name="project" value="LOCAL" />
       <updated>1684118198481</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add function:One trip for multi-item pick up.">
+      <created>1684145401696</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684145401696</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add function:One trip for multi-item pick up.">
+      <created>1684145670383</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684145670383</updated>
+    </task>
+    <task id="LOCAL-00006" summary="/">
+      <created>1684200827972</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684200827972</updated>
+    </task>
+    <task id="LOCAL-00007" summary="/">
+      <created>1684210046798</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684210046798</updated>
+    </task>
+    <task id="LOCAL-00008" summary="加入了GA，但是对于session部分的tasklist存在一些问题，因为运行到后面会出现agent空转的情况，另外未想清楚如何解决去货品取到最后未达到capacity但是也需要把这一部分货品进行搬运的问题。">
+      <created>1684242041887</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1684242041887</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Merge remote-tracking branch 'origin/Add_GA_20230516' into Add_GA_20230516&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;doc/worklog-shiyue.md">
+      <created>1684480420174</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1684480420174</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Update queue into session. 解决了agent空转，计量表不清零以及tasklist不更新的问题。&#10;已更新todo.md">
+      <created>1684488448015</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1684488448015</updated>
+    </task>
+    <task id="LOCAL-00011" summary="multithread">
+      <created>1684828115717</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1684828115717</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Multithread has achieved.">
+      <created>1684843060928</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1684843060928</updated>
+    </task>
+    <task id="LOCAL-00013" summary="GA生成的list可以上传至simulator中了，但是结果的统计以及导入到GA的selection这一部分还没做">
+      <created>1684931997056</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1684931997056</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Improve GA into simulator. Need evaluation.">
+      <created>1685358063739</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1685358063739</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Experiment.">
+      <created>1686561726772</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686561726772</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Queue_20230519" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test for update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test for update" />
+    <MESSAGE value="Add function:One trip for multi-item pick up." />
+    <MESSAGE value="/" />
+    <MESSAGE value="加入了GA，但是对于session部分的tasklist存在一些问题，因为运行到后面会出现agent空转的情况，另外未想清楚如何解决去货品取到最后未达到capacity但是也需要把这一部分货品进行搬运的问题。" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/Add_GA_20230516' into Add_GA_20230516&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;doc/worklog-shiyue.md" />
+    <MESSAGE value="Update queue into session. 解决了agent空转，计量表不清零以及tasklist不更新的问题。" />
+    <MESSAGE value="Update queue into session. 解决了agent空转，计量表不清零以及tasklist不更新的问题。&#10;已更新todo.md" />
+    <MESSAGE value="multithread" />
+    <MESSAGE value="Multithread has achieved." />
+    <MESSAGE value="GA生成的list可以上传至simulator中了，但是结果的统计以及导入到GA的selection这一部分还没做" />
+    <MESSAGE value="Improve GA into simulator. Need evaluation." />
+    <MESSAGE value="Experiment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Experiment." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/model/Strategy.py</url>
-          <line>60</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -158,11 +310,19 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="_list[0]" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$ItemManager.coverage" NAME="ItemManager 覆盖结果" MODIFIED="1684132174890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
-    <SUITE FILE_PATH="coverage/main_py$Task.coverage" NAME="Task 覆盖结果" MODIFIED="1684134934630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1684142750236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/main_py$Session.coverage" NAME="Session 覆盖结果" MODIFIED="1684142295126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
+    <SUITE FILE_PATH="coverage/main_py$GA.coverage" NAME="GA 覆盖结果" MODIFIED="1685252542832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
+    <SUITE FILE_PATH="coverage/main_py$TaskList.coverage" NAME="TaskList 覆盖结果" MODIFIED="1686115624943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
+    <SUITE FILE_PATH="coverage/main_py$Task.coverage" NAME="Task 覆盖结果" MODIFIED="1684144023858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
+    <SUITE FILE_PATH="coverage/main_py$Agent.coverage" NAME="Agent 覆盖结果" MODIFIED="1685083018145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1686641076163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$Session.coverage" NAME="Session 覆盖结果" MODIFIED="1684842494722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
   </component>
 </project>

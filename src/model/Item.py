@@ -36,6 +36,7 @@ class Item(object):
         self.weight = random.randint(1, 100) 
         self.size = random.randint(1, 100) 
         self.location = location
+        self.priority = random.randint(1, 100)
 
     def update_state(self, state_str):
         if "Reserved" in state_str:
