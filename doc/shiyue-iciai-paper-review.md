@@ -1,3 +1,4 @@
+Congratulations on the first draft.
 
 https://github.com/heraldia/AMR-Simulator/compare/main...review-paper
 // Symbol Description:
@@ -27,6 +28,7 @@ The proposed method generates and distributes optimized item task lists through 
 /*This -> Furthermore, t*/ work underscores the potential of integrating advanced simulation frameworks with intelligent task allocation strategies in propelling warehouse operations to new efficiency frontiers.
 
 // Overall, all sentence in the Abstract section are in the same structure, subject- verb.-object, we need more variety in style.
+// think about whether we need emphasize scalability and flexibility and extendable? 
 
 CCS CONCEPTS ¥ 
 Keywords: Autonomous Mobile Robot, Simulator, Task allocation, Scheduling algorithm
@@ -39,23 +41,28 @@ Keywords: Autonomous Mobile Robot, Simulator, Task allocation, Scheduling algori
   Firstly, this paper presents the WAMR Simulator, a Python-based simulation platform for warehouse robotics operations. The simulator is designed for the transportation planning of items according to different task requirements and offers a scalable, customizable, and lightweight solution for warehouse management. The WAMR Simulator eliminates the need for third-party software for constructing the warehouse environment, creating robot and factory equipment models, and encoding the assembly of factory components.
   The WAMR Simulator is utilized within a task allocation method to optimize operations. Customers submit orders, which are categorized into item task lists based on delivery times and sent to the warehouse management system. Warehouse robots, or agents, have a limited load capacity, so creating an agent task for each agent before each trip is crucial. An agent's trip involves collecting goods from assigned areas until they reach their load capacity, delivering them to various numbered destinations, and returning to the starting point to decide if they need to recharge. The agent task list is a comprehensive list of tasks that all agents must accomplish.
   Secondly, this paper introduces a task allocation method in the WAMR Simulator that uses scheduling algorithms for optimization. The method generates item task lists and allocates them using the simulator. A fitness value is produced and sent to the GA for selection, mutation, and crossover to create multiple generations of item task lists. This optimization process results in an efficient distribution of tasks in the warehouse, leading to better warehouse operations. PSO and its improved algorithms use similar optimization processes for optimal allocation. 
-  The paper is structured as follows: Section 2 provides a literature review of related work in the field. Section 3 provides a detailed description of the WAMR Simulator, including its key features and advantages. Section 4 presents the task allocation method implemented in the simulator and the use of several scheduling algorithms for optimization. Section 5 presents the experiment results. Finally, Section 6 gives a conclusion.
+  The paper is structured as follows: Section 2 provides a literature review of related work in the field. Section 3 provides a detailed description of the WAMR Simulator, including its key features and advantages. Section 4 presents the task allocation method implemented in the simulator and the use of several scheduling algorithms for optimization. Section 5 presents the experiment results. Finally, Section 6 /*gives -> draws*/ a conclusion.
 # 2 LITERATURE REVIEW
   Mobile robots have transformed warehouse operations. In 1997, Alami and colleagues introduced a "plan-merging paradigm" for multi-robot collaboration in the WAMR Simulator [1]. However, this approach does not fully address the distinct challenges and constraints of a warehouse setting. Kim and co-authors (2020) recently developed a control framework for the OWMR robot [2]. Nevertheless, their investigation is limited to the OWMR model, which may not be applicable to warehouses employing alternative robots. Zghair and Al-Araji's 2021 survey examines the control systems of autonomous mobile robots over the past decade, stressing their significance in enabling independent robots [3]. Alternatively, Shetty, Sah, and Chung (2020) proposed a vehicle routing-based method that surpasses traditional techniques for optimal route planning in manual order-picking systems [4]. However, their study does not incorporate the use of a simulator to simulate the pick-up and delivery process. 
   The warehouse industry has seen innovative approaches to enhance efficiency. Dou et al. (2015) combined GA-based task scheduling with reinforcement learning-based path planning for mobile robots to improve intelligent warehouse efficiency [5]. However, this method may not be suitable for highly dynamic operations. To address this, the WAMR Simulator allows testing of task allocation algorithms under varied conditions. Tsang et al. (2018) presented a warehouse multi-robot automation system focusing on task allocation and path planning, but their approach may not be practical for real-time task allocation in large-scale warehouses [6]. Karami et al. (2020) discussed task allocation for human-robot collaboration scenarios [7], while Li et al. (2018) focused on path planning for mobile robots [8]. However, neither addressed the critical aspect of warehouse operations - task allocation. In contrast, the WAMR Simulator provides a comprehensive solution for path planning and task allocation in a warehouse setting. Chatzisavvas et al. (2022) proposed an algorithm for optimal pathfinding that considers the energy consumption factor and selects the most efficient route [9]. However, this approach does not consider task allocation. Ganbold et al. (2020) introduced a simulation-based optimization method for warehouse worker assignment, but this approach only considers human workers and does not include the use of robots in the warehouse [10]. 
   Previous research explored the potential of scheduling algorithms to optimize task allocation in warehouse operations using AMRs. To accomplish this, the WAMR Simulator was developed as a lightweight and customizable simulation platform specifically designed for warehouse robotics operations. Its comprehensive solution considers the complexities and constraints of a fully automated warehouse environment. By combining the results of the WAMR Simulator with several scheduling algorithms, the paper also presents an optimal solution for task allocation. 
-# 3 DESCRIPTIONS OF THE WAMR SIMULATOR
+# 3 DESCRIPTION/*S*/ OF THE WAMR SIMULATOR 
   The WAMR Simulator is a lightweight and customizable simulation platform explicitly designed for warehouse robotics operations. It offers many features and benefits, including quickly obtaining results without visualization, high scalability and customization, and a user-friendly architecture. This simulator is an asset for organizations looking to enhance the efficiency and effectiveness of their warehouse robotics systems. Providing users with the right tools and flexibility to simulate and optimize their warehouse operations can improve their performance. In the following section, this article explains in detail the various components of the system and the default approach for completing tasks, which involves assigning one robot per suitable task.
 3.1 Robot
   The Agent Manager module is responsible for regulating the behavior and status of robots by maintaining a list. The class is designed using the Singleton pattern, which guarantees that only one class instance is created.
   The Agent Manager module efficiently handles the management of warehouse robots, providing them with unique IDs and arranging them into distinct lists. The module keeps track of the robots' statuses by adding or removing their IDs from state lists. Additionally, it employs statistical methods to compute each robot's cumulative distance and work time. To suit individual needs, users can easily modify the simulator's output. 
   This module's critical feature is defining the robot charging process. Macro regulation involves changing the robot's ID in state lists for charging. The robot's predetermined charging method carries out the procedure at a constant default rate. The charging time is calculated as follows: 
+  /*
 time to charge=(agent max?battery-agent current battery)/(charging speed)
-  When a robot enters the charging state, it is moved to the pausing state list. Upon charging completion, the robot battery level is updated to its maximum capacity, and the robot is transferred from the pausing state list to the idle state list. 
+duration of changing = (agent battery capacity - agent current remaining battery level) / charging rate
+*/
+  When a robot /*enters -> turns into */ the charging state, it is moved to the pausing state list. Upon charging completion, the robot battery level is updated to its maximum capacity, and the robot is transferred from the pausing state list to the idle state list. 
   The simulator manages the robot's charging behavior by monitoring its battery level and setting a threshold value. The threshold value is defined by a pre-experiment in the path planning algorithm that the user wishes to use. If the battery level is below the threshold, the robot is set to charge, and its ID is displayed. Once charging is complete, the robot is moved to the idle state list. The robot starts its task without charging if the battery level is above the threshold. This method helps conserve the robot's resources and minimizes energy waste. 
   Another method is available to check all robots in case the home and charge station are not in the same location in the future. Idle robots with less than full battery levels are sent to charge with a lower priority than robots with tasks. This ensures maximum charging station utilization and reduces robot waiting to charge queues. The whole process is shown in Figure 2. 
 
-Figure 2: Process of charging before tasks start
+/* Figure 2: Process of charging before tasks start   */  
+//   ALL FIGURE CAPTIONs SHOULD BE IN A SMALLER FONT SIZE. 
+
 3.2 Item
   The Item Manager module oversees the movement and tracking of all items within the system. Like the Agent Manager module, it utilizes a list-based system to manage many items effectively. Before each task, an empty list is generated, and all items are registered. Individual items are retrieved from the list throughout the task, and their status is updated accordingly. 
   Before defining this module's functions, the constructor initializes the item list. If the initial list is provided, it copies that list. Otherwise, it initializes an empty list. By default, an empty item list is established firstly to facilitate the control of item transportation by adding and removing items. The module encompasses three distinct functions: 
@@ -71,6 +78,9 @@ Figure 3: The complete working process with the Module Shelf, Item, and Item Man
   
   // Figure 8: Session module working process,  // font size is too small. We need restructure it.
   
+  // Figure 9: /* Change -> Move */ one robot from On-duty list to Pausing list.
+  // Figure 9: /* Change -> Move */ the robot from Pausing  list to On-duty list.
+  // The same in the Figure 8.
   Figure 9: Collision-checking method flowchart
 TASK ALLOCATION OPTIMIZATION BASED ON THE WAMR SIMULATOR
 Problem Description
@@ -97,13 +107,30 @@ Figure 12: Minimum objective function value of the population of each iteration 
   In the experiment, two different kinds of scale factory layouts are used in the simulator, considered small-scale and large-scale layouts. The iteration of the small scale is set to 60, and the large scaleÕs is 105. Each iteration has 20 item task lists. The figure only shows the minimum fitness value in each 20-item task list.
   Figure 11 shows the fitness value decreasing with iterations. A* algorithm is used for path planning, and four algorithms are compared - hybrid GA, GA, hybrid PSO, and PSO. GA is more effective for small-scale factory layouts. PSO and hybrid PSO reach an optimal result after 20 and 23 iterations, respectively. GA and hybrid GA can achieve smaller optimal fitness values than PSO and hybrid PSO by 60 iterations.
   Figure 12 displays four algorithms' minimum objective function values in the large-scale layout. It shows that hybrid GA and hybrid PSO have better optimization results compared to PSO and GA. The fitness value of GA and PSO stops decreasing after the 11th and 15th iterations, indicating a limited optimization effect. This differs slightly from the results shown in Figure 12.
-  40 experiments were conducted to analyze the stability of different scheduling algorithms in small-scale and large-scale layouts. Two box plots demonstrate the stability of algorithms.
+  /*+ In total, */ 40 experiments were conducted to analyze the stability of different scheduling algorithms in small-scale and large-scale layouts. Two box plots demonstrate the stability of algorithms.
   The box plots are generated for the data to represent each algorithm's spread and stability visually. 
-
+// Figure 17, it is better for y-axis, using 160,000 or 160k if possible. 
 Figure 17. Stability of optimal solutions for multiple runs of GA and PSO in the small-scale and large-scale layout
   In the large-scale data, the box plot visually confirms that GA appears to be the most stable, with a compact interquartile range (IQR) and no outliers. The hybrid GA algorithm has a wide IQR, indicating that it is less stable than the others. PSO seems the most stable in the small-scale data, and hybrid GA is the least stable algorithm. 
 CONCLUSION
-The growth of e-commerce has led to a rise in the number of warehouses worldwide. This has created challenges in managing these warehouses effectively. The main issue is how to organize the tasks required to retrieve items efficiently. This involves coordinating a detailed item task list that specifies which items must be delivered to which destination. Researchers have developed a strategy for autonomous mobile robots designed for a simulated warehouse environment to address this. This environment has various items arranged methodically on shelves. As orders come in, the system processes each order based on its alignment with the items on the shelves. This creates a comprehensive item task list that covers all the orders related to the shelves. The approach ensures that tasks are distributed fairly among the robots, considering their carrying capacity and ability to transport items efficiently. 
+The growth of e-commerce has led to a rise in the number of warehouses worldwide.  
+/*  T -> Alongside, t*/his has created challenges in managing these warehouses effectively /*. -> , */
+/* The main issue is how to organize the tasks required to retrieve items efficiently. 
+->
+One of which is how to organize the tasks required to retrieve items efficiently. 
+*/
+
+This involves coordinating a detailed item task list that specifies which items must be delivered to which destination. 
+/* Researchers ? Do you mean us or other researcher? if us, -> We */ have developed a strategy for autonomous mobile robots designed for a simulated warehouse environment to address this. 
+This environment has various items arranged methodically on shelves. 
+As orders come in, the system processes each order based on its alignment with the items on the shelves. 
+This creates a comprehensive item task list that covers all the orders related to the shelves. 
+The approach ensures that tasks are distributed fairly among the robots, considering their carrying capacity and ability to transport items efficiently. 
+
+// Overall, all sentence in the CONCLUSION section are in the same structure, subject- verb.-object, we need more variety in style.
+
+// The current CONCLUSION section just restate the problem and solution. We can summary those in two sentences and emphasize the importance of our work in the academic community and our future work.
+
 
 # REFERENCE
 [1]	R. Alami, S. Fleury, M. Herrb, F. Ingrand, and S. Qutub, ÒOperating a large fleet of mobile robots using the plan-merging paradigm,Ó 1997. [Online]. Available: https://hal.laas.fr/hal-01979708
@@ -133,7 +160,7 @@ Software, Intelligent informatics, Control and system engineering
 https://w-rdb.waseda.jp/html/100000682_en.html
 Yunfei Feng
 Staff Machine Learning Engineer, Tech Lead
-Indoor localization, computer vision, machine learning, deep learning, sensor fusion on smart devices, and smart systems
+Indoor localization, computer vision, /*machine learning, deep learning -> system integration*/, sensor fusion on smart devices, smart buildings and smart systems
 https://scholar.google.com/citations?user=2d0HxpIAAAAJ&hl=en
 
 
