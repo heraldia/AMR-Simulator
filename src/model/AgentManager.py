@@ -112,3 +112,6 @@ class AgentManager(metaclass=Singleton):
 
     def write_to_excel(self):
             self.df.to_excel("Agents_Statistics.xlsx", index=False)
+    def has_pending_items(self):
+        return bool(self.agent_state_dict['OnDuty']) or bool(self.agent_state_dict['Pausing']) or bool(
+            self.agent_state_dict['carrying'])
