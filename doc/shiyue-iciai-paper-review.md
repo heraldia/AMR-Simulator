@@ -1,4 +1,5 @@
 
+https://github.com/heraldia/AMR-Simulator/compare/main...review-paper
 // Symbol Description:
 /*ability*/ means to remove word "ability";
 /*+s*/ means to append a letter 's';
@@ -25,7 +26,7 @@ The proposed method generates and distributes optimized item task lists through 
 /*The paper -> We */ outlines the simulator's architecture, /*the -> a*/ proposed task allocation method, and /*the -> multi-aspect */ significant improvement/*s*/ in warehouse operations, supported by rigorous experimentation. 
 /*This -> Furthermore, t*/ work underscores the potential of integrating advanced simulation frameworks with intelligent task allocation strategies in propelling warehouse operations to new efficiency frontiers.
 
-// Overall, all sentence in the Abstract section are in the same structure, ¿¿¿. ¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿
+// Overall, all sentence in the Abstract section are in the same structure, subject- verb.-object, we need more variety in style.
 
 CCS CONCEPTS ¥ 
 Keywords: Autonomous Mobile Robot, Simulator, Task allocation, Scheduling algorithm
