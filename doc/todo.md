@@ -87,3 +87,88 @@ while queue:
 1. when queue is an item, how to achieve?
 2. GA Workflow, GA +principle, parameters etc. 
 3. statistics for each session.
+
+# queue is a taskList
+queue = [item0, item1, item2]
+agentList = [agent0, agent1, ... , agent4]
+for agent in agentList:
+    agent.state = 'idle'
+
+while queue:
+
+    # assign this item to one agent
+    #for _ in range(len(agentManager.idleList)):
+    while agentManager.idleList:
+        if not queue:
+            return
+
+        item = queue.pop(0)
+        agent = agentManager.idleList.pop(0)
+        def cell_process(agent, item):
+            agent.setState('busy')
+            agentTakeItem(item)
+            item.setState('taken')
+            agent.finishTask(item)
+            item.setState('completed')
+            agent.setState('idle')
+            agentManager.idleList.append(agent)
+        cell_process(agent, item)
+
+# queue is a list of taskLists
+queue = [taskList0, taskList1, taskList2]
+agentList = [agent0, agent1, ... , agent4]
+for agent in agentList:
+    agent.state = 'idle'
+
+while queue:
+
+    # assign this taskList to one agent
+    #for _ in range(len(agentManager.idleList)):
+    while agentManager.idleList:
+        if not queue:
+            return
+
+        taskList = queue.pop(0)
+        agent = agentManager.idleList.pop(0)
+
+        def cell_process(agent, taskList):
+            agent.setState('busy')
+            # agentTask(taskList) 
+            while taskList:
+                item = taskList.pop(0)
+                if agent.weight + weight > agent.maxLoad:
+                    agent.return_to_checkout()
+                    item.setState('completed')
+                    agent.update_state(odometer, time, weight)
+                else:
+                    agentTakeItem(item)
+                    item.setState('taken')
+                    agent.update_state(odometer, time, weight)
+                
+
+            agent.setState('idle')
+            agentManager.idleList.append(agent)
+        cell_process(agent, taskList)
+
+# bad mutable,    best immutable
+
+immutable
+for i in [1,2,1,2,1,2,2,1,1,1]:
+    if 1:
+        list1.append(i)
+    else:
+        list2.append(i)
+
+mutable
+a = [1,2,1,2,1,2,2,1,1,1]
+a = [2,1,2,1,2,2,1,1,1]
+a = [2,2,1,2,2,1,1,1]
+for index in range(len(a)) :
+    item = a.pop_item(index)
+    if item == 1:
+        list1.append(item)
+    else:
+        list2.append(item)
+
+
+

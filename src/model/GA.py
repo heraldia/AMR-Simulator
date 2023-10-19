@@ -1,5 +1,8 @@
 from model.AgentManager import AgentManager
 import random
+import copy
+import numpy as np
+import collections
 
 
 class GA(object):
@@ -7,7 +10,7 @@ class GA(object):
     Genetic Algorithm
     """
 
-    def __init__(self, agentManager, originalItemList=None, crossover_rate=0.7, mutation_rate=0.01):
+    def __init__(self, agentManager, originalItemList=None, crossover_rate=0.7, mutation_rate=0.1, elitism=0.1, tabu_tenure = 5):
         if not originalItemList:
             self._list = []
         else:
@@ -15,82 +18,129 @@ class GA(object):
         self.mutation_rate = mutation_rate
         self.crossover_rate = crossover_rate
         self.agentManager = agentManager
+        self.total_list = [self._list]
+        self.processing_total_list = copy.deepcopy(self.total_list)
+        self.tabu_list = collections.deque(maxlen=tabu_tenure)
+        self.elitism = elitism
+        self.a = 0
 
     def generate(self, originalItemList):
         self._list = originalItemList
         return self._list
 
-    def crossoever(self, parent1, parent2):
-        # """
-        # Implement simple one-point crossover
-        # """
-        # crossover_index = random.randint(0, len(parent1) - 1)
-        # child1 = parent1[:crossover_index] + parent2[crossover_index:]
-        # child2 = parent2[:crossover_index] + parent1[crossover_index:]
-        # return child1, child2
+    def crossover(self, parent1, parent2):
+        """
+            Implement Uniform Crossover
+            """
         size = len(parent1)
-        # Generate the crossover points
-        start, end = sorted(random.sample(range(size), 2))
-        # Keep the items between the crossover points from the first parent
-        child1 = [-1] * start + parent1[start:end] + [-1] * (size - end)
-        child2 = [-1] * start + parent2[start:end] + [-1] * (size - end)
-        # Fill the remaining places with the items from the other parent in their order
-        for p in [parent2, parent1]:
-            for i in range(start):
-                if p[i] not in child1:
-                    child1[child1.index(-1)] = p[i]
-            for i in range(end, size):
-                if p[i] not in child1:
-                    child1[child1.index(-1)] = p[i]
-        for p in [parent1, parent2]:
-            for i in range(start):
-                if p[i] not in child2:
-                    child2[child2.index(-1)] = p[i]
-            for i in range(end, size):
-                if p[i] not in child2:
-                    child2[child2.index(-1)] = p[i]
+        child1 = parent1.copy()
+        child2 = parent2.copy()
+
+        for i in range(size):
+            if random.random() < self.crossover_rate:
+                child1[i], child2[i] = child2[i], child1[i]  # swap genes
+
         return child1, child2
 
     def mutate(self, task_list):
+    #     # """
+    #     # Implement simple mutation
+    #     # """
+    #     # for i in range(len(task_list)):
+    #     #     if random.random() < self.mutation_rate:
+    #     #         # swap two tasks
+    #     #         swap_index = random.randint(0, len(task_list) - 1)
+    #     #         task_list[i], task_list[swap_index] = task_list[swap_index], task_list[i]
+    #     # return task_list
         """
-        Implement simple mutation
+        Implement insertion_mutation
         """
-        for i in range(len(task_list)):
-            if random.random() < self.mutation_rate:
-                # swap two tasks
-                swap_index = random.randint(0, len(task_list) - 1)
-                task_list[i], task_list[swap_index] = task_list[swap_index], task_list[i]
+        index1 = random.randint(0, len(task_list) - 1)
+        index2 = random.randint(0, len(task_list) - 1)
+        task = task_list.pop(index1)
+        task_list.insert(index2, task)
         return task_list
+        # """
+        # Implement inversion_mutation
+        # """
+        # index1 = random.randint(0, len(task_list) - 2)
+        # index2 = random.randint(index1, len(task_list) - 1)
+        # task_list[index1:index2 + 1] = reversed(task_list[index1:index2 + 1])
+        # return task_list
+
+
+
 
     def selection(self, total_list):
         """
         Implement simple selection
         """
-        fitness_values = self.agentManager.calculate_total_busy_time_and_distance(total_list)
-        sorted_pairs = sorted(zip(total_list, fitness_values), key=lambda x: x[1])
-        self._list = sorted_pairs[0][0]
-        # Update total_list to only keep the best half of the items
-        total_list = [pair[0] for pair in sorted_pairs[:len(sorted_pairs) // 2]]
-        return total_list
-
-    def fitness(self, total_list):
-        """
-        Implement a fitness function that favors agents with lower total busy time and distance travelled.
-        """
-        return self.agentManager.calculate_total_busy_time_and_distance(total_list)
-
-
-
-    def run(self, generations):
-        total_list = [self._list]
-        for _ in range(generations):
-            parent1 = self._list.copy()
-            parent2 = self._list.copy()
-            random.shuffle(parent1)
-            random.shuffle(parent2)
-            child1, child2 = self.crossoever(parent1, parent2)
-            child1 = self.mutate(child1)
-            child2 = self.mutate(child2)
-            total_list.extend([parent1, parent2, child1, child2])
-            total_list = self.selection(total_list)
+        fitness_values = self.agentManager.fitness_results
+        paired = list(zip(total_list, fitness_values))
+        paired.sort(key=lambda x: x[1])
+        # Select the best half (with lowest fitness values)
+        selected = paired[:len(paired) // 2]
+        # Extract the task lists from the pairs
+        self._list = [pair[0] for pair in selected]
         return self._list
+
+    # def fitness(self, total_list):
+    #     """
+    #     Implement a fitness function that favors agents with lower total busy time and distance travelled.
+    #     """
+    #     return self.agentManager.analyze_agents()
+
+
+    def roulette_wheel_selection(self, total_list):
+        fitness_values = self.agentManager.fitness_results
+        # Compute the total fitness of the population
+        total_fitness = sum(fitness_values)
+        # Normalize fitness values
+        normalized_fitness_values = [fv / total_fitness for fv in fitness_values]
+        # Calculate cumulative sum
+        cumulative_sum = np.cumsum(normalized_fitness_values).tolist()
+
+        selected = []
+        for _ in range(int(len(total_list) * (1 - self.elitism))):  # Consider elitism
+            random_value = random.random()
+            for i, cs in enumerate(cumulative_sum):
+                if random_value <= cs:
+                    selected.append(total_list[i])
+                    break
+        return selected
+
+
+
+    def run(self): #generate a set of list for calcultating fitness
+        # self.total_list = [self._list]
+        if self.a == 0:  #初代种群随机生成20个父辈列表
+            for _ in range(20):
+                parent = self._list.copy()
+                random.shuffle(parent)
+                self.processing_total_list.append(parent)
+            self.a += 1
+            return self.processing_total_list
+
+        else:
+            next_generation = []
+
+            # 实现精英策略：首先保留最优秀的一部分个体
+            elite_size = int(len(self.processing_total_list) * self.elitism)
+            elites = self.selection(self.processing_total_list)[:elite_size]
+            next_generation.extend(elites)
+
+            # 从剩余的个体中进行轮盘赌选择
+            rest_of_list = self.roulette_wheel_selection(self.processing_total_list)
+
+            # 对选择的个体进行交叉和变异
+            while len(next_generation) < len(self.processing_total_list):
+                parent1 = random.choice(rest_of_list)
+                parent2 = random.choice(rest_of_list)
+                child1, child2 = self.crossover(parent1, parent2)
+                child1 = self.mutate(child1)
+                child2 = self.mutate(child2)
+                next_generation.extend([child1, child2])
+
+            self.processing_total_list = next_generation
+            self.a += 1
+            return self.processing_total_list

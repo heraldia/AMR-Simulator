@@ -63,7 +63,6 @@ class Strategy:
         return res
 
 
-
     def a_star(self):
 
         class Node:

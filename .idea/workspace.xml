@@ -39,7 +39,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="20230523" />
+        <entry key="$PROJECT_DIR$" value="2023_06_12_localsearch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,35 +48,39 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2PoJIr8yBMQZzPGExqyuWi2uoJf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "TODO_SCOPE": "所有位置",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Improved__for__GA__20230522",
-    "last_opened_file_path": "D:/AMR-Simulator",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;所有位置&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;2023__06__08&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/AMR-Simulator&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="AMR-Simulator" />
@@ -123,7 +127,29 @@
       <workItem from="1684720554663" duration="10225000" />
       <workItem from="1684748037574" duration="830000" />
       <workItem from="1684806701199" duration="1176000" />
-      <workItem from="1684821187459" duration="9698000" />
+      <workItem from="1684821187459" duration="10360000" />
+      <workItem from="1684843434992" duration="330000" />
+      <workItem from="1684908833568" duration="10807000" />
+      <workItem from="1684928990413" duration="4681000" />
+      <workItem from="1685079851475" duration="13480000" />
+      <workItem from="1685106215752" duration="2498000" />
+      <workItem from="1685153133620" duration="2111000" />
+      <workItem from="1685155311819" duration="474000" />
+      <workItem from="1685250048118" duration="10980000" />
+      <workItem from="1685357295290" duration="1383000" />
+      <workItem from="1685941896576" duration="28000" />
+      <workItem from="1685941932706" duration="2272000" />
+      <workItem from="1686014710284" duration="3576000" />
+      <workItem from="1686112700208" duration="11846000" />
+      <workItem from="1686140663662" duration="15000" />
+      <workItem from="1686198997184" duration="24301000" />
+      <workItem from="1686273876761" duration="13576000" />
+      <workItem from="1686486551737" duration="12660000" />
+      <workItem from="1686538904163" duration="9164000" />
+      <workItem from="1686623585239" duration="1750000" />
+      <workItem from="1686640854999" duration="17207000" />
+      <workItem from="1686718325540" duration="622000" />
+      <workItem from="1687162151427" duration="914000" />
     </task>
     <task id="LOCAL-00001" summary="Test for update">
       <created>1684117942213</created>
@@ -202,7 +228,35 @@
       <option name="project" value="LOCAL" />
       <updated>1684828115717</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Multithread has achieved.">
+      <created>1684843060928</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1684843060928</updated>
+    </task>
+    <task id="LOCAL-00013" summary="GA生成的list可以上传至simulator中了，但是结果的统计以及导入到GA的selection这一部分还没做">
+      <created>1684931997056</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1684931997056</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Improve GA into simulator. Need evaluation.">
+      <created>1685358063739</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1685358063739</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Experiment.">
+      <created>1686561726772</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686561726772</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,17 +294,14 @@
     <MESSAGE value="Update queue into session. 解决了agent空转，计量表不清零以及tasklist不更新的问题。" />
     <MESSAGE value="Update queue into session. 解决了agent空转，计量表不清零以及tasklist不更新的问题。&#10;已更新todo.md" />
     <MESSAGE value="multithread" />
-    <option name="LAST_COMMIT_MESSAGE" value="multithread" />
+    <MESSAGE value="Multithread has achieved." />
+    <MESSAGE value="GA生成的list可以上传至simulator中了，但是结果的统计以及导入到GA的selection这一部分还没做" />
+    <MESSAGE value="Improve GA into simulator. Need evaluation." />
+    <MESSAGE value="Experiment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Experiment." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/main.py</url>
-          <line>81</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -259,12 +310,19 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="_list[0]" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$ItemManager.coverage" NAME="ItemManager 覆盖结果" MODIFIED="1684132174890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
-    <SUITE FILE_PATH="coverage/main_py$GA.coverage" NAME="GA 覆盖结果" MODIFIED="1684722651389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
+    <SUITE FILE_PATH="coverage/main_py$GA.coverage" NAME="GA 覆盖结果" MODIFIED="1685252542832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
+    <SUITE FILE_PATH="coverage/main_py$TaskList.coverage" NAME="TaskList 覆盖结果" MODIFIED="1686115624943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
     <SUITE FILE_PATH="coverage/main_py$Task.coverage" NAME="Task 覆盖结果" MODIFIED="1684144023858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1684842686572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/main_py$Agent.coverage" NAME="Agent 覆盖结果" MODIFIED="1685083018145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1686641076163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/main_py$Session.coverage" NAME="Session 覆盖结果" MODIFIED="1684842494722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/model" />
   </component>
 </project>

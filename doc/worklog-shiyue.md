@@ -84,3 +84,62 @@ objective function:
 # 20230523
 工作总结： 
 achieve multithreading. 
+
+# 20230524
+工作总结：
+1. 解决了GA生成列表无法导入的问题。
+2. GA的selection部分应该如何设计，待解决，轮盘选择如何设计？ 
+3. 未加入principle，该如何设计？
+4. 对于每一个GA生成的List最后得到的数据，为传入到selection中，该如何传入？
+5. principle应该如何加？                     
+
+# 20230605
+1. Short term electric load forecasting model and its verification for process industrial enterprises based on hybrid GA-PSO-BPNN algorithm—A case study of papermaking process： https://www.sciencedirect.com/science/article/pii/S0360544218325829?casa_token=AT5Bj6grOasAAAAA:DAApMuI-6pduMnTLYbc6H_p_zY23CLGiZigxJhEEwhaL4i71fSPQQmm5ykK7cJwhucoCuva8TVU#sec2
+    
+2. Real-Time Order Acceptance and Scheduling Problems in a Flow Shop Environment Using Hybrid GA-PSO Algorithm： https://ieeexplore.ieee.org/abstract/document/8798615
+    Key points:
+        1. PFSP: Permutation Flow Shop Scheduling Problem, 一种排列流水车间调度问题. First, they must accept or reject the order while considering available machine capacity and the customer-specified due date. Second, the jobs involved in each new order must be scheduled with the existing accepted orders, which are either already being processed by the machines or are waiting in the processing queue.
+        2. When an order is registered in the production system, a hypothetical schedule of that order is generated, since there is a likelihood that it cannot be processed immediately due to machine availability constraints. However, if the first machine is free when the job arrives, the job can be immediately processed into the first machine without violating the machine availability constraints, and without interrupting the other accepted orders which are already being processed by other machines. If the first machine or the following machines are not immediately free, then the orders need to wait in a queue for processing until the next machine is free. Scheduling the jobs of each order while considering the current state of availability at that time may reduce the completion time of each order and therefore increase the possibility of its acceptance. Therefore, on basis of that hypothetical schedule, an order acceptance or rejection decision is made on basis of local view of whether all jobs of that order can be completed within its due date or not. This approach is called real-time strategy for multiple order PFSPs.
+        3. a non-random initialization is proposed where the first member/individual of the initial generation starts with an NEH heuristic 
+        4.  A tournament selection technique
+        5. The performance of the proposed approaches is sensitive to their parameter settings. In this paper, parameters are calibrated based on Taguchi’s method of experiment design to achieve good solutions within reasonable computational times. " V. N. Nair, B. Abraham, J. MacKay, G. Box, R. N. Kacker, T. J. Lorenzen, et al., "Taguchi’s parameter design: A panel discussion", Technometrics, vol. 34, no. 2, pp. 127-161, 1992."
+        6. The proposed approaches are tested on a set of benchmark problems and compared with the existing approaches. The results show that the proposed approaches are able to find good solutions within reasonable computational times.
+            "An average relative performance of deviation (ARPD)"，敏感性分析。
+        7. 判断标准：运用不同的算法被拒绝和接受的订单数目，更多的接受订单数目，说明算法更好。
+3. A novel particle swarm optimization-based grey model for the prediction of warehouse performance：https://academic.oup.com/jcde/article/8/2/705/6149254
+
+
+# 20230607
+1. 比较算法的最后一代的最优解的质量，或者比较收敛速度（达到同样质量的解所需要的代数）。运行时间的关注？
+2. 如何构建原始GA和现在改进的GA进行比较？因为GA采用的fitness值是来自于simulator的。
+3. 用原始GA定义一个适应度函数：例如：f(tasklist) = w1 * 总行驶路程 + w2 * 总运行时间。这里的w1和w2是权重，可以根据你的具体需求来设定。这个函数的值越小，表示tasklist的质量越高。
+4. Improved Genetic Algorithm Based Express Delivery Route Optimization Model： https://ieeexplore.ieee.org/abstract/document/9182464?casa_token=FQ7GThEdiCIAAAAA:Y09LqOYaD5sM_s7sZ5OGvm_pWE3pQd8Cq2IT1Ow31Ue278KpkPzFi3a1U6JV5cobfxtjdh6wBoU
+5. Multi Target Task Distribution and Path Planning for Multi-Agents
+
+# 20230619
+fitness value = due time penalty + agent working time + agent working distance= alpha*sum(Pi)*max(ci-pi,0))+beta*agent working time + gamma*agent working distance
+1. Pi: priority of each item
+2. ci: completion time of one task
+3. pi: due time of one task
+4. Due time is fixed.
+
+
+实验设计：
+设定一个全局时钟，初始值为0。
+
+每个agent都有自己的工作时间计数器。当一个agent开始执行一个任务时，它的计数器开始计时；当任务完成时，将该任务的时间累加到agent的工作时间上。
+
+在每个iteration（迭代）的结束时，找出所有agent的工作时间中的最大值，这个最大值即为完成整个tasklist所需要的时间。将这个最大值累加到全局时钟上。
+
+在计算fitness value时，根据全局时钟的值来计算due time penalty。如果全局时钟的值超过了预定的时间，那么就给出一个惩罚。
+
+DUE TIME 设定：
+静态设定：如果任务的预期完成时间已知，且不受其他因素影响，您可以直接设定due time为这个预期时间。
+
+动态设定：如果任务的完成时间可能受到其他任务的影响，或者受到资源限制（如agent的数量和载重能力）的影响，您可能需要动态地设定due time。具体来说，您可以首先设定一个初步的due time，然后在优化过程中根据实际情况进行调整。
+
+优先级相关设定：如果任务的优先级信息可用，您可以根据优先级来设定due time。比如，优先级高的任务可以设定短一些的due time，优先级低的任务可以设定长一些的due time。
+
+混合设定：您也可以结合上述方法，根据任务的特点和实际情况来设定due time。
+
+设定due time时需要避免设定过于严苛或过于宽松的值。过于严苛的due time可能导致大量任务无法按时完成，从而造成过高的惩罚；过于宽松的due time可能导致任务的优先级等因素得不到足够的考虑。因此，设定due time时可能需要进行一些试验和调整，以找到合适的值。
