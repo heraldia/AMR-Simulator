@@ -171,3 +171,38 @@ https://scholar.google.com/citations?user=2d0HxpIAAAAJ&hl=en
 // We might need more reference, better to be around 16 references.
 
 
+----------------
+
+# 2023_1024_2028 
+Authors' background:
+Simulation, Scheduling optimization // all three author either follow title style or normal lowercase style.
+e.g.
+Indoor localization, computer vision, machine learning, deep learning, sensor fusion on smart devices 
+or 
+Indoor localization, Computer vision, Sensor fusion on smart devices, smart buildings and smart systems
+
+Indoor localization, computer vision, machine learning, deep learning, sensor fusion on smart devices -> Indoor localization, computer vision, sensor fusion on smart devices, smart buildings and smart systems
+
+
+# Abstract
+Industry 4.0 transforms warehouse operations with automation and Autonomous Mobile Robots (AMRs), enhancing efficiency and cost-effectiveness. 
+The WAMR Simulator optimizes AMR systems for peak performance in warehouses. 
+It allows direct user interaction and customized simulation environments, showing scalable, flexible, and extendable features. 
+/*Therefore, t -> T*/his paper proposes a novel task allocation methodology using GA and PSO in conjunction with the WAMR Simulator to boost warehouse operational efficiency and productivity. 
+The proposed method generates and distributes optimized item task lists through scheduling algorithms within /*the -> a*/ simulator framework. 
+Hereby, the iterative optimization process ensures efficient task distribution, /*thereby*/ improving warehouse operational efficacy. 
+We outline the simulator's architecture, a proposed task allocation method, and multi-aspect significant improvements in warehouse operations, /*supported -> validated */ by rigorous experimentation. 
+Furthermore, the work underscores the potential to integrate advanced simulation frameworks with intelligent task allocation strategies to propel warehouse operations to new efficiency frontiers.
+
+# 5. CONCLUSION
+The growth of e-commerce has led to a rise in the number of warehouses worldwide. 
+Alongside, this has created challenges in managing these warehouses effectively, one of which is how to organize the tasks required to retrieve items efficiently. 
+Coordinating a detailed task list for delivering items to their respective destinations is crucial. 
+To address this, we have developed a strategy for autonomous mobile robots that are designed for a simulated warehouse environment. 
+In this environment, items are arranged methodically on shelves, and the system processes each order based on its alignment with the items on the shelves. 
+This creates a comprehensive item task list that covers all the orders related to the shelves. 
+Our approach ensures that tasks are distributed fairly among the robots, considering their carrying capacity and ability to transport items efficiently. 
+There are some /*areas of improvement that can be made to -> room to improve on / the current simulator. 
+/* One suggestion is -> We can further try */ to replace the fixed collision threshold of one unit with a /*dynamic -> adaptive*/ threshold /*that considers -> in regards with */ the speed of the robots. 
+Another potential improvement is to use the WAMR Simulator /*to solve -> for a scenario similar with the */ Knapsack problem in a targeted manner.
+
